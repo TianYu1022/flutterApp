@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100], //整个容器背景
       appBar: AppBar(
-        title: Text('Tian Yu Test'),
+        title: const Text('Tian Yu Test'),
         elevation: 30.0, //阴影
       ),
       body: ListView.builder(
@@ -58,7 +58,7 @@ class Home extends StatelessWidget {
 class Hello extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Hello World',
         textDirection: TextDirection.ltr, //文字显示 从左到右

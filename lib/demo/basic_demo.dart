@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/cupertino.dart';
-
 class BasicDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

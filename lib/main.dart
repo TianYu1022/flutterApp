@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:number1/demo/basic_demo.dart';
 import 'package:number1/demo/botton_navigation_bar_demo.dart';
+import 'package:number1/demo/layout_demo.dart';
 import 'package:number1/demo/listview_demo.dart';
+import 'package:number1/demo/sliver_demo.dart';
 
 import 'demo/drawer_demo.dart';
+import 'demo/view_demo.dart';
 
 void main() => runApp(App());
 
@@ -29,7 +32,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, //标签的数量
+      length: 4, //标签的数量
       child: Scaffold(
         backgroundColor: Colors.grey[100],
         //整个容器背景
@@ -56,9 +59,10 @@ class Home extends StatelessWidget {
             indicatorWeight: 1.0,
             tabs: <Widget>[
               //标签视图
-              const Tab(icon: const Icon(Icons.local_florist)),
-              const Tab(icon: Icon(Icons.change_history)),
-              const Tab(icon: const Icon(Icons.directions_bike))
+              Tab(icon: Icon(Icons.local_florist)),
+              Tab(icon: Icon(Icons.change_history)),
+              Tab(icon: Icon(Icons.directions_bike)),
+              Tab(icon: Icon(Icons.view_quilt))
             ],
           ),
         ),
@@ -66,8 +70,8 @@ class Home extends StatelessWidget {
           children: <Widget>[
             ListViewDemo(),
             BasicDemo(),
-            const Icon(Icons.directions_bike,
-                size: 128.0, color: Colors.black12),
+            LayoutDemo(),
+            SliverDemo(),
           ],
         ),
         drawer: DrawerDemo(),

@@ -12,6 +12,7 @@ class SliverDemo extends StatelessWidget {
             // title: Text("TIAN YU"),
             // pinned: true, //固定头部
             // floating: true,
+            pinned: true,
             expandedHeight: 178.0, //弹性头部高度
             flexibleSpace: FlexibleSpaceBar(
               title: Text(

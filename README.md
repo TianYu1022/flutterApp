@@ -1,4 +1,6 @@
-我的 Flutter 项目
+我的 Flutter 项目 
+git@github.com:TianYu1022/flutterApp.git
+https://github.com/TianYu1022/flutterApp
 2022.05.16 
     创建仓库 提交代码 开始Flutter
 2022.05.17
@@ -21,3 +23,16 @@
     ---
     CustomScrollView
     SliverList  SliverGrid
+2022.05.19
+    路由 //routes: {"/about": (context) => PageDemo(title: "pushNamed 跳转")}
+    //Navigator.pushNamed(context, "/about");
+    initialRoute: "/",
+    routes: {
+        "/": (context) => NavigationDemo(),
+        "/about": (context) => PageDemo(title: "pushNamed 跳转")
+    }
+    InkWell // 溅墨效果
+    TextField //输入框
+    TextEditingController //控制器
+    Form //表单
+    ScaffoldMessenger //弹框

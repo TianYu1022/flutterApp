@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:number1/demo/form_demo.dart';
+import 'package:number1/demo/material_components.dart';
 import 'demo/basic_demo.dart';
 import 'demo/botton_navigation_bar_demo.dart';
 import 'demo/drawer_demo.dart';
@@ -18,16 +19,19 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, //debug调试
       // home: Home(),
-      initialRoute: "/form",
+      initialRoute: "/mdc",
       routes: {
         "/home": (context) => Home(),
         "/about": (context) => PageDemo(title: "pushNamed 跳转"),
-        "/form": (context) => FromDemo()
+        "/form": (context) => FromDemo(),
+        "/mdc": (context) => MaterialComponents(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
-        highlightColor: Colors.transparent, //水波纹
-        splashColor: Colors.transparent, //水波纹
+          primarySwatch: Colors.yellow,
+          highlightColor: Colors.transparent, //水波纹
+          splashColor: Colors.transparent, //水波纹
+          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          toggleableActiveColor: Colors.green,
       ),
     );
   }

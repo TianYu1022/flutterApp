@@ -1,15 +1,24 @@
 class Post {
-  const Post({
-    required this.title,
-    required this.author,
-    required this.imageUrl,
-    required this.description,
-  });
+  // const Post({
+  //   required this.title,
+  //   required this.author,
+  //   required this.imageUrl,
+  //   required this.description,
+  // });
 
   final String title;
   final String author;
   final String imageUrl;
   final String description;
+
+  bool selected = false;
+
+  Post(
+      {required this.title,
+      required this.author,
+      required this.imageUrl,
+      required this.description,
+      this.selected = false});
 }
 
 final List<Post> posts = [

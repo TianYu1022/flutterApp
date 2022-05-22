@@ -1,8 +1,8 @@
 ## 我的 Flutter 项目
 
-[GitHub地址](git@github.com:TianYu1022/flutterApp.git)
-
 [GitHub地址](https://github.com/TianYu1022/flutterApp)
+
+# Material风格组件
 
 - ## 2022.05.16
 
@@ -64,7 +64,7 @@
 - ## 2022.5.20
 
   ```csharp
-  ListTile
+  ListTile //带icon 标题 副标题 组件
   FloatingActionButton FloatingActionButton.extended //悬浮按钮
   BottomAppBar //底部工具栏
   ```
@@ -125,3 +125,46 @@
   Divider //分割线
   DataTableDemo //数据表格
   ```
+
+- ## 2022.05.22
+
+  ```csharp
+  PaginatedDataTable //分页显示表格数据
+  Card //卡片 默认原价4.0
+  StepperDemo //步骤widget
+  ```
+
+  ```csharp
+  ClipRRect( //子widget切圆角
+    borderRadius: const BorderRadius.only(
+      topLeft: Radius.circular(4.0),
+      topRight: Radius.circular(4.0)
+    ,
+    child: Image.network(post.imageUrl, fit: BoxFit.cover),
+  )
+  ```
+
+# Flutter开发
+
+- ## widget之间传递数据 StateManagementDemo & StateManagementLessDemo
+
+  ```csharp
+  InheritedWidget //直接把数据传递给需要的小部件 eg：StateManagementDemo
+  ScopedModel //三方widget树传值
+  ```
+
+  [ScopedModel](https://pub.dev/packages/scoped_model)      [高版本flutter空安全设计后引用此包会报错，具体处理详见](https://stackoverflow.com/questions/64917744/cannot-run-with-sound-null-safety-because-dependencies-dont-support-null-safety)
+
+- ## StreamDemo
+
+  ```csharp
+  stream //数据流
+  ```
+
+- ## [RxDart](https://pub.dev/packages/rxdart)
+
+  ```csharp
+  rx // Reactive Extensions 响应式编程中 加工处理数据的工具 eg：RxJava RxJs
+  ```
+
+- ## [BLoC开发架构](https://dzone.com/articles/how-to-develop-your-flutter-app-with-the-bloc-arch)

@@ -8,6 +8,7 @@ import 'demo/layout_demo.dart';
 import 'demo/listview_demo.dart';
 import 'demo/navigation_demo.dart';
 import 'demo/sliver_demo.dart';
+import 'demo/state/state_management_demo.dart';
 
 void main() => runApp(App());
 
@@ -27,11 +28,13 @@ class App extends StatelessWidget {
         "/mdc": (context) => MaterialComponents(),
       },
       theme: ThemeData(
-          primarySwatch: Colors.yellow,
-          highlightColor: Colors.transparent, //水波纹
-          splashColor: Colors.transparent, //水波纹
-          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          toggleableActiveColor: Colors.green,
+        primarySwatch: Colors.yellow,
+        highlightColor: Colors.transparent,
+        //水波纹
+        splashColor: Colors.transparent,
+        //水波纹
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        toggleableActiveColor: Colors.green,
       ),
     );
   }

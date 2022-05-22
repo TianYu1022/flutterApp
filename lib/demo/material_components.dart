@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:number1/demo/card_demo.dart';
 import 'package:number1/demo/expansion_panel.dart';
 import 'package:number1/demo/form_demo.dart';
+import 'package:number1/demo/paginated_data_table_demo.dart';
 import 'package:number1/demo/popup_menu_button_demo.dart';
 import 'package:number1/demo/radio_demo.dart';
+import 'package:number1/demo/rxdart/rxdate_demo.dart';
 import 'package:number1/demo/simple_dialog_demo.dart';
 import 'package:number1/demo/slider_demo.dart';
 import 'package:number1/demo/snack_bar_demo.dart';
+import 'package:number1/demo/state/state_management_demo.dart';
+import 'package:number1/demo/stepper_demo.dart';
+import 'package:number1/demo/stream/stream_demo.dart';
+import 'package:number1/demo/state/state_management_less_demo.dart';
 import 'package:number1/demo/switch_demo.dart';
 import 'package:number1/main.dart';
 import 'alert_dialog_demo.dart';
+import 'bolc/bloc_demo.dart';
 import 'bottom_sheet_demo.dart';
 import 'button_demo.dart';
 import 'checkbox_demo.dart';
@@ -28,6 +36,17 @@ class MaterialComponents extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ListItem(title: "Home", page: Home()),
+          ListItem(title: "BlocDemo", page: BlocDemo()),
+
+          ListItem(title: "RxDatrDemo", page: RxDatrDemo()),
+
+          ListItem(title: "StreamDemo", page: StreamDemo()),
+          ListItem(title: "StateManagementDemo", page: StateManagementDemo()),
+          ListItem(title: "StateManagementLessDemo", page: StateManagementLessDemo()),
+          ///-------------------------------- Material风格组件 --------------------------------
+          ListItem(title: "StepperDemo", page: StepperDemo()), //步骤
+          ListItem(title: "CardDemo", page: CardDemo()),
+          ListItem(title: "PaginatedDataTableDemo", page: PaginatedDataTableDemo()), //分页显示表格数据
           ListItem(title: "DataTableDemo", page: DataTableDemo()), //数据表格
           ListItem(title: "ChipDemo", page: ChipDemo()), //label 控件
           ListItem(title: "ExpansionPanelDemo", page: ExpansionPanelDemo()), //收缩面板

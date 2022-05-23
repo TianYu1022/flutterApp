@@ -16,6 +16,7 @@ import 'package:number1/demo/state/state_management_less_demo.dart';
 import 'package:number1/demo/switch_demo.dart';
 import 'package:number1/main.dart';
 import 'alert_dialog_demo.dart';
+import 'animation/animation_demo.dart';
 import 'bolc/bloc_demo.dart';
 import 'bottom_sheet_demo.dart';
 import 'button_demo.dart';
@@ -24,6 +25,7 @@ import 'chip_demo.dart';
 import 'data_table_demo.dart';
 import 'date_demo.dart';
 import 'floating_action_button_demo.dart';
+import 'http/http_demo.dart';
 
 class MaterialComponents extends StatelessWidget {
   @override
@@ -36,6 +38,11 @@ class MaterialComponents extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ListItem(title: "Home", page: Home()),
+
+          ListItem(title: "AnimationDemo", page: AnimationDemo()),
+
+          ListItem(title: "HttpDemo", page: HttpDemo()),
+
           ListItem(title: "BlocDemo", page: BlocDemo()),
 
           ListItem(title: "RxDatrDemo", page: RxDatrDemo()),

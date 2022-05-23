@@ -158,7 +158,7 @@
 - ## StreamDemo
 
   ```csharp
-  stream //数据流
+  stream //数据流forceRead
   ```
 
 - ## [RxDart](https://pub.dev/packages/rxdart)
@@ -168,3 +168,5 @@
   ```
 
 - ## [BLoC开发架构](https://dzone.com/articles/how-to-develop-your-flutter-app-with-the-bloc-arch)
+
+- ## [Http Dio](https://pub.dev/packages/dio)

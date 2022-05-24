@@ -170,3 +170,24 @@
 - ## [BLoC开发架构](https://dzone.com/articles/how-to-develop-your-flutter-app-with-the-bloc-arch)
 
 - ## [Http Dio](https://pub.dev/packages/dio)
+
+```csharp
+/// 执行入口
+/// 类似于kotlin中的可选参数
+/// 无人性推断
+/// dynamic 特殊类型
+/// Object 任意类型 在可选参数中如果指定了此类型，则必须声明为必传参数:required Object name
+/// 但可以  Object? name 指定为可空，即可实现可选参数的目的
+void testFunction({dynamic name, int? age = 18, required String? sex}) {
+  print("name = $name    age = $age    sex = $sex");
+  testFuncatoin2(name as int);
+}
+
+void testFuncation1(name, int age, String sex) {
+  print("name = $name    age = $age    sex = $sex");
+}
+
+void testFuncatoin2(int age) {
+  print("testFuncatoin2 = $age");
+}
+```

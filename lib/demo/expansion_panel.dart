@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///收缩面板
 class ExpansionPanelDemo extends StatefulWidget {
-  const ExpansionPanelDemo({Key? key}) : super(key: key);
+  const ExpansionPanelDemo({Key key}) : super(key: key);
 
   @override
   State<ExpansionPanelDemo> createState() => _ExpansionPanelDemoState();
@@ -10,7 +10,7 @@ class ExpansionPanelDemo extends StatefulWidget {
 
 class _ExpansionPanelDemoState extends State<ExpansionPanelDemo> {
   var _isExpanded = false; //是否展开
-  late List<ExpansionPanelItem> _expansionPanelItems;
+  List<ExpansionPanelItem> _expansionPanelItems;
 
   @override
   void initState() {
@@ -96,8 +96,8 @@ class ExpansionPanelItem {
   bool isExpanded;
 
   ExpansionPanelItem({
-    required this.headerText,
-    required this.body,
-    required this.isExpanded,
+    this.headerText,
+    this.body,
+    this.isExpanded,
   });
 }

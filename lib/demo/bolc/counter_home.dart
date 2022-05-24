@@ -41,16 +41,16 @@ class CounterProvider extends InheritedWidget {
   final CounterBloc bloc;
 
   const CounterProvider({
-    Key? key,
-    required this.bloc,
-    required Widget child,
+    Key key,
+    this.bloc,
+    Widget child,
   }) : super(key: key, child: child);
 
   static CounterProvider of(BuildContext context) {
-    final CounterProvider? result =
+    final CounterProvider result =
         context.dependOnInheritedWidgetOfExactType<CounterProvider>();
     assert(result != null, 'No CounterProvider found in context');
-    return result!;
+    return result;
   }
 
   @override

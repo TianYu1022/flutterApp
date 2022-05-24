@@ -1,9 +1,9 @@
 class Post {
   // const Post({
-  //   required this.title,
-  //   required this.author,
-  //   required this.imageUrl,
-  //   required this.description,
+  //   this.title,
+  //   this.author,
+  //   this.imageUrl,
+  //   this.description,
   // });
 
   final String title;
@@ -14,10 +14,10 @@ class Post {
   bool selected = false;
 
   Post(
-      {required this.title,
-      required this.author,
-      required this.imageUrl,
-      required this.description,
+      {this.title,
+      this.author,
+      this.imageUrl,
+      this.description,
       this.selected = false});
 }
 

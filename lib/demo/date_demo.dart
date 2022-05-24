@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateDemo extends StatefulWidget {
-  const DateDemo({Key? key}) : super(key: key);
+  const DateDemo({Key key}) : super(key: key);
 
   @override
   State<DateDemo> createState() => _DateDemoState();

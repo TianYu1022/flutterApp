@@ -3,7 +3,7 @@ import 'package:number1/model/post.dart';
 import 'package:number1/view/image_build_view.dart';
 
 class CardDemo extends StatefulWidget {
-  const CardDemo({Key? key}) : super(key: key);
+  const CardDemo({Key key}) : super(key: key);
 
   @override
   State<CardDemo> createState() => _CardDemoState();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:number1/model/post.dart';
 
 class PaginatedDataTableDemo extends StatefulWidget {
-  const PaginatedDataTableDemo({Key? key}) : super(key: key);
+  const PaginatedDataTableDemo({Key key}) : super(key: key);
 
   @override
   State<PaginatedDataTableDemo> createState() => _PaginatedDataTableDemoState();
@@ -62,7 +62,7 @@ class PostDataSource extends DataTableSource {
   var _selectedCount = 0;
 
   @override
-  DataRow? getRow(int index) {
+  DataRow getRow(int index) {
     var post = _posts[index];
 
     return DataRow.byIndex(cells: <DataCell>[

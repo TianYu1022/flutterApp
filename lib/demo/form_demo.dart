@@ -26,7 +26,7 @@ class FromDemo extends StatelessWidget {
 
 ///表单
 class RegisterForm extends StatefulWidget {
-  RegisterForm({Key? key}) : super(key: key);
+  RegisterForm({Key key}) : super(key: key);
 
   @override
   State<RegisterForm> createState() => RegisterFormState();
@@ -97,14 +97,14 @@ class RegisterFormState extends State<RegisterForm> {
         ));
   }
 
-  String? validatorUsername(String? value) {
+  String validatorUsername(String value) {
     if (value?.isEmpty ?? false) {
       return "username is empty";
     }
     return null;
   }
 
-  String? validatorPassword(String? value) {
+  String validatorPassword(String value) {
     if (value?.isEmpty ?? false) {
       return "password is empty";
     }
@@ -123,7 +123,7 @@ class ThemeDemo extends StatelessWidget {
 
 ///文本输入框
 class TextFieldDemo extends StatefulWidget {
-  TextFieldDemo({Key? key}) : super(key: key);
+  TextFieldDemo({Key key}) : super(key: key);
 
   @override
   State<TextFieldDemo> createState() => TextFieldDemoState();

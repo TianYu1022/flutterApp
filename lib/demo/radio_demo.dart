@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RadioDemo extends StatefulWidget {
-  const RadioDemo({Key? key}) : super(key: key);
+  const RadioDemo({Key key}) : super(key: key);
 
   @override
   State<RadioDemo> createState() => _RadioDemoState();
@@ -61,7 +61,7 @@ class _RadioDemoState extends State<RadioDemo> {
     );
   }
 
-  void _handleRadioValueChanged(int? value) {
+  void _handleRadioValueChanged(int value) {
     setState(() {
       _radioGroup = value ?? _radioGroup;
     });

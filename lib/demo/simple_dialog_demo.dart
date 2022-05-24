@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum Option { A, B, C }
 
 class SimpleDialogDemo extends StatefulWidget {
-  const SimpleDialogDemo({Key? key}) : super(key: key);
+  const SimpleDialogDemo({Key key}) : super(key: key);
 
   @override
   State<SimpleDialogDemo> createState() => _SimpleDialogDemoState();

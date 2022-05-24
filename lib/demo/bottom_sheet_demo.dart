@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///底部可滑动弹窗
 class BottomSheetDemo extends StatefulWidget {
-  const BottomSheetDemo({Key? key}) : super(key: key);
+  const BottomSheetDemo({Key key}) : super(key: key);
 
   @override
   State<BottomSheetDemo> createState() => _BottomSheetDemoState();

@@ -4,7 +4,7 @@ enum Action { OK, CANCLE }
 
 ///提示对话框
 class AlertDialogDemo extends StatefulWidget {
-  const AlertDialogDemo({Key? key}) : super(key: key);
+  const AlertDialogDemo({Key key}) : super(key: key);
 
   @override
   State<AlertDialogDemo> createState() => _AlertDialogDemoState();

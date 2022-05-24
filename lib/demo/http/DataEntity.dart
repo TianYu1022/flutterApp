@@ -1,5 +1,5 @@
 class DataEntity {
-  List<Posts>? posts;
+  List<Posts> posts;
 
   DataEntity({this.posts});
 
@@ -7,7 +7,7 @@ class DataEntity {
     if (json['posts'] != null) {
       posts = <Posts>[];
       json['posts'].forEach((v) {
-        posts!.add(Posts.fromJson(v));
+        posts.add(Posts.fromJson(v));
       });
     }
   }
@@ -15,18 +15,18 @@ class DataEntity {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     if (posts != null) {
-      data['posts'] = posts!.map((v) => v.toJson()).toList();
+      data['posts'] = posts.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Posts {
-  int? id;
-  String? title;
-  String? author;
-  String? description;
-  String? imageUrl;
+  int id;
+  String title;
+  String author;
+  String description;
+  String imageUrl;
 
   Posts({this.id, this.title, this.author, this.description, this.imageUrl});
 

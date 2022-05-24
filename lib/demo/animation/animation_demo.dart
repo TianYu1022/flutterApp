@@ -19,10 +19,10 @@ class AnimationDemoHome extends StatefulWidget {
 
 class _AnimationDemoHomeState extends State<AnimationDemoHome>
     with TickerProviderStateMixin {
-  late AnimationController animationDemoController;
-  late Animation animation;
-  late Animation animationColor;
-  late CurvedAnimation curve;
+  AnimationController animationDemoController;
+  Animation animation;
+  Animation animationColor;
+  CurvedAnimation curve;
 
   @override
   void initState() {
@@ -81,8 +81,8 @@ class AnimatedHeart extends AnimatedWidget {
   final AnimationController controller;
 
   AnimatedHeart({
-    required this.animations,
-    required this.controller,
+    this.animations,
+    this.controller,
   }) : super(listenable: controller);
 
   @override

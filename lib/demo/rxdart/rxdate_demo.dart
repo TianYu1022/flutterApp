@@ -15,7 +15,7 @@ class RxDatrDemo extends StatelessWidget {
 }
 
 class RxDatrHomeDemo extends StatefulWidget {
-  const RxDatrHomeDemo({Key? key}) : super(key: key);
+  const RxDatrHomeDemo({Key key}) : super(key: key);
 
   @override
   State<RxDatrHomeDemo> createState() => _RxDatrHomeDemoState();

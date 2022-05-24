@@ -84,7 +84,7 @@ class ListItem extends StatelessWidget {
   final String title;
   final Widget page;
 
-  ListItem({required this.title, required this.page});
+  ListItem({this.title, this.page});
 
   @override
   Widget build(BuildContext context) {

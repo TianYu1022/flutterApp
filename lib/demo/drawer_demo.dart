@@ -30,7 +30,7 @@ class DrawerDemo extends StatelessWidget {
                   fit: BoxFit.cover, //填充
                   colorFilter: ColorFilter.mode(
                       //滤镜
-                      Colors.yellow[400]!.withOpacity(0.6),
+                      Colors.yellow[400].withOpacity(0.6),
                       BlendMode.hardLight), //混合模式
                 )),
           ),

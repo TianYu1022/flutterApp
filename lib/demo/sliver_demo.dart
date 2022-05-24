@@ -48,7 +48,6 @@ class SliverListDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        childCount: posts.length,
         (BuildContext context, int index) {
           return Padding(
             padding: EdgeInsets.only(bottom: 32.0),
@@ -88,6 +87,7 @@ class SliverListDemo extends StatelessWidget {
             ),
           );
         },
+        childCount: posts.length,
       ),
     );
   }
@@ -104,17 +104,14 @@ class SliverGridDemo extends StatelessWidget {
         mainAxisSpacing: 8.0,
         childAspectRatio: 1.0,
       ),
-      delegate: SliverChildBuilderDelegate(
-        childCount: posts.length,
-        (BuildContext context, int index) {
-          return Container(
-            child: Image.network(
-              posts[index].imageUrl,
-              fit: BoxFit.cover,
-            ),
-          );
-        },
-      ),
+      delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+        return Container(
+          child: Image.network(
+            posts[index].imageUrl,
+            fit: BoxFit.cover,
+          ),
+        );
+      }, childCount: posts.length),
     );
   }
 }

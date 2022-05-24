@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PopupMenuButtonDemo extends StatefulWidget {
-  const PopupMenuButtonDemo({Key? key}) : super(key: key);
+  const PopupMenuButtonDemo({Key key}) : super(key: key);
 
   @override
   State<PopupMenuButtonDemo> createState() => _PopupMenuButtonDemoState();

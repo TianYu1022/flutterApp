@@ -17,7 +17,7 @@ class HttpDemo extends StatelessWidget {
 }
 
 class HttpDemoHome extends StatefulWidget {
-  const HttpDemoHome({Key? key}) : super(key: key);
+  const HttpDemoHome({Key key}) : super(key: key);
 
   @override
   State<HttpDemoHome> createState() => _HttpDemoHomeState();
@@ -31,7 +31,7 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
     // data.then((value) => debugPrint(json.encode(value)));
   }
 
-  Future<List<Posts>?> getData() async {
+  Future<List<Posts>> getData() async {
     final response =
         await Dio().get("https://resources.ninghao.net/demo/posts.json");
     if (response.statusCode == 200) {
@@ -52,7 +52,7 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
             ));
           }
 
-          var data = snapshot.data as List<Posts>?;
+          var data = snapshot.data as List<Posts>;
 
           if (data == null || data.isEmpty) {
             return Container(
@@ -150,7 +150,7 @@ class PostEntity {
   final String title;
   final String description;
 
-  PostEntity({required this.title, required this.description});
+  PostEntity({this.title, this.description});
 
   PostEntity.fromJson(Map json)
       : title = json["title"],

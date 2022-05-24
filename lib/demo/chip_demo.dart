@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///碎片 label
 class ChipDemo extends StatefulWidget {
-  const ChipDemo({Key? key}) : super(key: key);
+  const ChipDemo({Key key}) : super(key: key);
 
   @override
   State<ChipDemo> createState() => _ChipDemoState();

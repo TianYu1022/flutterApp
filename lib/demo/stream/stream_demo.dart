@@ -16,16 +16,16 @@ class StreamDemo extends StatelessWidget {
 }
 
 class StreamDemoHome extends StatefulWidget {
-  const StreamDemoHome({Key? key}) : super(key: key);
+  const StreamDemoHome({Key key}) : super(key: key);
 
   @override
   State<StreamDemoHome> createState() => _StreamDemoHomeState();
 }
 
 class _StreamDemoHomeState extends State<StreamDemoHome> {
-  late StreamSubscription _streamDemoSubscription;
-  late StreamController<String> _streamDemo; //控制器
-  late StreamSink _sinkDemo;
+  StreamSubscription _streamDemoSubscription;
+  StreamController<String> _streamDemo; //控制器
+  StreamSink _sinkDemo;
   var _data = "...";
 
   @override

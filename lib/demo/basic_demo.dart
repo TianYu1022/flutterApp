@@ -22,7 +22,7 @@ class ContainerDemo extends StatelessWidget {
         fit: BoxFit.cover, //填充满
         colorFilter: ColorFilter.mode(
           //滤镜
-          Colors.yellow[100]!.withOpacity(0.1),
+          Colors.yellow[100].withOpacity(0.1),
           BlendMode.hardLight,
         ),
       )),

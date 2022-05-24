@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'counter_home.dart';
 
 class BlocDemo extends StatefulWidget {
-  const BlocDemo({Key? key}) : super(key: key);
+  const BlocDemo({Key key}) : super(key: key);
 
   @override
   State<BlocDemo> createState() => _BlocDemoState();

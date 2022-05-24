@@ -3,7 +3,7 @@ import 'package:number1/model/post.dart';
 
 ///步骤widget
 class StepperDemo extends StatefulWidget {
-  const StepperDemo({Key? key}) : super(key: key);
+  const StepperDemo({Key key}) : super(key: key);
 
   @override
   State<StepperDemo> createState() => _StepperDemoState();

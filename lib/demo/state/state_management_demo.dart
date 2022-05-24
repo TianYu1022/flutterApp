@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class StateManagementDemo extends StatefulWidget {
-  const StateManagementDemo({Key? key}) : super(key: key);
+  const StateManagementDemo({Key key}) : super(key: key);
 
   @override
   State<StateManagementDemo> createState() => _StateManagementDemoState();
@@ -63,17 +63,17 @@ class CounterProvider extends InheritedWidget {
   final VoidCallback onClickListener;
 
   const CounterProvider({
-    required this.count,
-    required this.onClickListener,
-    Key? key,
-    required Widget child,
+    this.count,
+    this.onClickListener,
+    Key key,
+    Widget child,
   }) : super(key: key, child: child);
 
   static CounterProvider of(BuildContext context) {
-    final CounterProvider? result =
+    final CounterProvider result =
     context.dependOnInheritedWidgetOfExactType<CounterProvider>();
     assert(result != null, 'No CounterProvider found in context');
-    return result!;
+    return result;
   }
 
   @override

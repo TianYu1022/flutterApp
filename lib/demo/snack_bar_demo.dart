@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///提示操作栏
 class SnackBarDemo extends StatefulWidget {
-  const SnackBarDemo({Key? key}) : super(key: key);
+  const SnackBarDemo({Key key}) : super(key: key);
 
   @override
   State<SnackBarDemo> createState() => _SnackBarDemoState();
@@ -33,7 +33,7 @@ class _SnackBarDemoState extends State<SnackBarDemo> {
 }
 
 class SnackBarButton extends StatelessWidget {
-  const SnackBarButton({Key? key}) : super(key: key);
+  const SnackBarButton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

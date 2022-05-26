@@ -22,6 +22,7 @@ import '../demo/bottom_sheet_demo.dart';
 import '../demo/button_demo.dart';
 import '../demo/checkbox_demo.dart';
 import '../demo/chip_demo.dart';
+import '../demo/click_button_demo.dart';
 import '../demo/data_table_demo.dart';
 import '../demo/date_demo.dart';
 import '../demo/floating_action_button_demo.dart';
@@ -39,6 +40,8 @@ class MaterialComponents extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ListItem(title: "Home", page: Home()),
+
+          ListItem(title: "ClickButtonDemo", page: ClickButtonDemo()),
 
           ListItem(title: "HomePage", page: HomePage()),
 

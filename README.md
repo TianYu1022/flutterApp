@@ -6,7 +6,7 @@
 
 - ## 2022.05.16
 
-  ```
+  ```tex
   创建仓库 提交代码 开始Flutter
   ```
 
@@ -38,7 +38,7 @@
   SliverGrid
   ```
 
-  ```csharp
+  ```dart
   PageView //页面视图 PageController// 做一些设置
   GridView.count //scrollDirection: Axis.horizontal 滚动方式
   GridView.extent //网格布局创建的另一种方式
@@ -88,7 +88,7 @@
 
   #### [安装第三方包](https://pub.dev/)
 
-  ```csharp
+  ```dart
   //flutter异步程序
   Future<void> _selectTime() async {
     var timeOfDay =
@@ -157,13 +157,13 @@
 
 - ## StreamDemo
 
-  ```csharp
+  ```dart
   stream //数据流forceRead
   ```
 
 - ## [RxDart](https://pub.dev/packages/rxdart)
 
-  ```csharp
+  ```dart
   rx // Reactive Extensions 响应式编程中 加工处理数据的工具 eg：RxJava RxJs
   ```
 
@@ -171,10 +171,9 @@
 
 - ## [Http Dio](https://pub.dev/packages/dio)
 
-```csharp
+```dart
 /// 执行入口
 /// 类似于kotlin中的可选参数
-/// 无人性推断
 /// dynamic 特殊类型
 /// Object 任意类型 在可选参数中如果指定了此类型，则必须声明为必传参数:required Object name
 /// 但可以  Object? name 指定为可空，即可实现可选参数的目的

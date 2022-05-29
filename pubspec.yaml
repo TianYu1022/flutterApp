@@ -32,9 +32,14 @@ dependencies:
   intl: ^0.17.0
   scoped_model: ^1.1.0
   rxdart: ^0.27.3
-  http: ^0.13.4
   dio: ^4.0.6
   fluttertoast: ^8.0.9
+  # flutter_swiper
+  flutter_nested: ^1.0.0 # 帧率优化之后用 flutter_nested
+  readmore: ^2.1.0 #扩展Text控件
+  image_picker: ^0.8.5+3
+  video_player: ^2.4.2
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

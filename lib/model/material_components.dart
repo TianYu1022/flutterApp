@@ -20,13 +20,18 @@ import '../demo/animation/animation_demo.dart';
 import '../demo/bolc/bloc_demo.dart';
 import '../demo/bottom_sheet_demo.dart';
 import '../demo/button_demo.dart';
+import '../demo/camera/camera_demo.dart';
 import '../demo/checkbox_demo.dart';
 import '../demo/chip_demo.dart';
 import '../demo/click_button_demo.dart';
 import '../demo/data_table_demo.dart';
 import '../demo/date_demo.dart';
 import '../demo/floating_action_button_demo.dart';
+import '../demo/flexible/geeksfor_geeks.dart';
+import '../demo/flexible/geeksfor_geeks1.dart';
+import '../demo/flexible/geeksfor_geeks2.dart';
 import '../demo/http/http_demo.dart';
+import '../demo/read_more_text_demo.dart';
 import '../test/home_page.dart';
 
 class MaterialComponents extends StatelessWidget {
@@ -41,15 +46,23 @@ class MaterialComponents extends StatelessWidget {
         children: <Widget>[
           ListItem(title: "Home", page: Home()),
 
-          ListItem(title: "ClickButtonDemo", page: ClickButtonDemo()),
+          ListItem(title: "CameraDemo", page: CameraDemo(title: 'Image Picker Example')),
 
-          ListItem(title: "HomePage", page: HomePage()),
+          ListItem(title: "ReadMoreTextDemo", page: ReadMoreTextDemo()),
 
-          ListItem(title: "AnimationDemo", page: AnimationDemo()),
+          ListItem(title: "GeeksforGeeks2 响应式不超出屏幕", page: GeeksforGeeks2()),
+          ListItem(title: "GeeksforGeeks1", page: GeeksforGeeks1()),
+          ListItem(title: "GeeksforGeeks", page: GeeksforGeeks()),
 
-          ListItem(title: "HttpDemo", page: HttpDemo()),
+          ListItem(title: "ClickButtonDemo 可点击控件", page: ClickButtonDemo()),
 
-          ListItem(title: "BlocDemo", page: BlocDemo()),
+          ListItem(title: "测试各种控件摆放位置", page: HomePage()),
+
+          ListItem(title: "AnimationDemo 动画", page: AnimationDemo()),
+
+          ListItem(title: "HttpDemo 网络请求列表", page: HttpDemo()),
+
+          ListItem(title: "BlocDemo BLoC响应式编程", page: BlocDemo()),
 
           ListItem(title: "RxDatrDemo", page: RxDatrDemo()),
 
@@ -57,15 +70,15 @@ class MaterialComponents extends StatelessWidget {
           ListItem(title: "StateManagementDemo", page: StateManagementDemo()),
           ListItem(title: "StateManagementLessDemo", page: StateManagementLessDemo()),
           ///-------------------------------- Material风格组件 --------------------------------
-          ListItem(title: "StepperDemo", page: StepperDemo()), //步骤
-          ListItem(title: "CardDemo", page: CardDemo()),
-          ListItem(title: "PaginatedDataTableDemo", page: PaginatedDataTableDemo()), //分页显示表格数据
-          ListItem(title: "DataTableDemo", page: DataTableDemo()), //数据表格
-          ListItem(title: "ChipDemo", page: ChipDemo()), //label 控件
-          ListItem(title: "ExpansionPanelDemo", page: ExpansionPanelDemo()), //收缩面板
-          ListItem(title: "SnackBarDemo", page: SnackBarDemo()), //提示操作栏
-          ListItem(title: "BottomSheetDemo", page: BottomSheetDemo()), //底部可滑动弹窗
-          ListItem(title: "AlertDialogDemo", page: AlertDialogDemo()), //提示对话框
+          ListItem(title: "StepperDemo 步骤组件", page: StepperDemo()), //步骤
+          ListItem(title: "CardDemo 卡片布局", page: CardDemo()),
+          ListItem(title: "PaginatedDataTableDemo 分页显示表格数据", page: PaginatedDataTableDemo()), //分页显示表格数据
+          ListItem(title: "DataTableDemo 数据表格", page: DataTableDemo()), //数据表格
+          ListItem(title: "ChipDemo label 控件", page: ChipDemo()), //label 控件
+          ListItem(title: "ExpansionPanelDemo 收缩面板", page: ExpansionPanelDemo()), //收缩面板
+          ListItem(title: "SnackBarDemo 提示操作栏", page: SnackBarDemo()), //提示操作栏
+          ListItem(title: "BottomSheetDemo 底部可滑动弹窗", page: BottomSheetDemo()), //底部可滑动弹窗
+          ListItem(title: "AlertDialogDemo 提示对话框", page: AlertDialogDemo()), //提示对话框
           ListItem(title: "SimpleDialogDemo", page: SimpleDialogDemo()),
           ListItem(title: "DateDemo", page: DateDemo()),
           ListItem(title: "SliderDemo", page: SliderDemo()),

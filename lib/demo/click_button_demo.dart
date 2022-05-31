@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:number1/project/common/global_constant.dart';
 
 import '../project/db/hi_cache.dart';
 
@@ -87,15 +88,16 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
   //   }*/
   // }
 
-  void clickButton() async {
-    HiCache.getInstance().setString("key", "田宇11111");
-    var a = HiCache.getInstance().get<int>("key");
-    debugPrint("睚眦 => $a");
+  void clickButton() {
+    HiCache.getInstance().setString(GlobalConstant.userName, "田宇11111");
+    HiCache.getInstance().setString(GlobalConstant.userName, "田宇");
+    HiCache.getInstance().setInt(GlobalConstant.userAge, 20);
 
-    HiCache.getInstance().setString("name", "田宇");
-    HiCache.getInstance().setInt("age", 20);
-    var name = HiCache.getInstance().get("name");
-    var age = HiCache.getInstance().get("age");
+    var name = HiCache.getInstance()
+        .get<String>(GlobalConstant.userName); //指定泛型为 String
+    var age =
+        HiCache.getInstance().get(GlobalConstant.userAge); //不指定泛型 Int T 自动推断
+
     debugPrint("睚眦 => name $name age $age");
   }
 }

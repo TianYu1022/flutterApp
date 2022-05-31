@@ -43,9 +43,4 @@ class DioAdapter extends HiNetAdapter {
         statusMessage: response?.statusMessage ?? "statusMessage 为空 !",
         extra: response);
   }
-
-  //A value of type 'Type' can't be returned from the method 'buildRes' because it has a return type of 'Future<HiNetResponse<dynamic>>'.
-
-//无法从方法“buildRes”返回类型为“Type”的值，因为它的返回类型为“Future<HiNetResponse<dynamic>>”
-  //无法从方法“buildRes”返回类型为“Type”的值，因为它的返回类型为“Future<HiNetResponse<dynamic>>”。
 }

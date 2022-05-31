@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:number1/utils/dialog.dart';
+
+import '../project/http/core/hi_error.dart';
+import '../project/http/core/hi_net.dart';
+import '../project/http/request/test_request.dart';
 
 class ClickButtonDemo extends StatefulWidget {
   const ClickButtonDemo({Key? key}) : super(key: key);
@@ -62,22 +65,22 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
     );
   }
 
-  void clickButton() {
-    showToast(msg: "点击了按钮");
-  }
-
-  // void clickButton() async {
-  //   var request = TestRequest();
-  //   request.add("aaa", "aaa").add("bbb", "bbb");
-  //   try {
-  //     var result = await HiNet.getInstance().fire(request);
-  //     debugPrint("睚眦 result => $result");
-  //   } on NeedAuth catch (e) {
-  //     debugPrint("睚眦 NeedAuth => ${e.toString()}");
-  //   } on NeedLogin catch (e) {
-  //     debugPrint("睚眦 NeedLogin => ${e.toString()}");
-  //   } on HiNetError catch (e) {
-  //     debugPrint("睚眦 HiNetError => ${e.toString()}");
-  //   }
+  // void clickButton() {
+  //   showToast(msg: "点击了按钮");
   // }
+
+  void clickButton() async {
+    var request = TestRequest();
+    request.add("aaa", "aaa").add("bbb", "bbb").add("requestPrams", "田宇");
+    try {
+      var result = await HiNet.getInstance().fire(request);
+      debugPrint("睚眦 result => $result");
+    } on NeedAuth catch (e) {
+      debugPrint("睚眦 NeedAuth => ${e.toString()}");
+    } on NeedLogin catch (e) {
+      debugPrint("睚眦 NeedLogin => ${e.toString()}");
+    } on HiNetError catch (e) {
+      debugPrint("睚眦 HiNetError => ${e.toString()}");
+    }
+  }
 }

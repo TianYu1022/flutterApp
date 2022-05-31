@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:number1/project/http/core/dio_adapter.dart';
 import 'package:number1/project/http/core/hi_error.dart';
 import 'package:number1/project/http/core/hi_net_adapter.dart';
-import 'package:number1/project/http/core/mock_adapter.dart';
 import 'package:number1/project/http/request/base_request.dart';
 
 class HiNet {
@@ -53,7 +53,11 @@ class HiNet {
 
   Future<dynamic> send<T>(BaseRequest request) async {
     logD("url => ${request.url()}");
-    MockAdapter mockAdapter = MockAdapter();
+
+    ///MockAdapter 发送请求
+    ///MockAdapter mockAdapter = MockAdapter();
+    ///DioAdapter 发送请求
+    DioAdapter mockAdapter = DioAdapter();
     return mockAdapter.send(request);
   }
 

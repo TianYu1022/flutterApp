@@ -25,35 +25,32 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
               alignment: Alignment.topLeft, //对齐方式
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0), child: SizedBox(
-                  width: 100.0,
-                  height: 100.0,
-                  child: Container(
-                    alignment: Alignment(0.0, 0.0),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(3, 54, 255, 1.0),
-                      borderRadius: BorderRadius.circular(8.0),
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: SizedBox(
+                    width: 100.0,
+                    height: 100.0,
+                    child: Container(
+                      alignment: Alignment(0.0, 0.0),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(3, 54, 255, 1.0),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                   ),
-                ),),
+                ),
                 SizedBox(
                   width: 200.0,
                   height: 30.0,
-                  child: GestureDetector( //子 widget 可点击控件
-                    onTap: (){
-                      showToast(msg: "点击了添加");
-                    },
+                  child: GestureDetector(
+                    //子 widget 可点击控件
+                    onTap: clickButton,
                     child: Container(
                       decoration: BoxDecoration(
                           color: Color.fromRGBO(3, 54, 255, 1.0),
                           shape: BoxShape.circle,
-                          gradient: RadialGradient( //镜像渐变
-                              colors: [
-                                Colors.green,
-                                Colors.green
-                              ])),
-                      child:
-                      Icon(Icons.add, color: Colors.white, size: 32.0),
+                          gradient: RadialGradient(//镜像渐变
+                              colors: [Colors.green, Colors.green])),
+                      child: Icon(Icons.add, color: Colors.white, size: 32.0),
                     ),
                   ),
                 ),
@@ -64,4 +61,23 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
       ),
     );
   }
+
+  void clickButton() {
+    showToast(msg: "点击了按钮");
+  }
+
+  // void clickButton() async {
+  //   var request = TestRequest();
+  //   request.add("aaa", "aaa").add("bbb", "bbb");
+  //   try {
+  //     var result = await HiNet.getInstance().fire(request);
+  //     debugPrint("睚眦 result => $result");
+  //   } on NeedAuth catch (e) {
+  //     debugPrint("睚眦 NeedAuth => ${e.toString()}");
+  //   } on NeedLogin catch (e) {
+  //     debugPrint("睚眦 NeedLogin => ${e.toString()}");
+  //   } on HiNetError catch (e) {
+  //     debugPrint("睚眦 HiNetError => ${e.toString()}");
+  //   }
+  // }
 }

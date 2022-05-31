@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
 import '../../view/image_build_view.dart';
 import 'DataEntity.dart';
 
@@ -71,47 +72,50 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
         var bean = data[index];
         return Card(
           child: Column(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      topRight: Radius.circular(4.0)),
-                  child: ImageBuildView(bean.imageUrl ?? "", radius: 0.0),
-                ),
-              ),
-              ListTile(
-                leading: CircleAvatar(
-                    backgroundImage: NetworkImage(bean.imageUrl ?? "")),
-                title: Text(bean.title ?? ""),
-                subtitle: Text(bean.author ?? ""),
-              ),
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(bean.description ?? "",
-                    maxLines: 2, overflow: TextOverflow.ellipsis), //显示两行 ...结尾
-              ),
-              ButtonTheme(
-                  child: ButtonBar(
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("Like".toUpperCase(),
-                        style: const TextStyle(color: Colors.redAccent)),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("Read".toUpperCase(),
-                        style: const TextStyle(color: Colors.grey)),
-                  ),
-                ],
-              ))
-            ],
+            children: contentChildren(bean),
           ),
         );
       },
       itemCount: data.length);
+
+  List<Widget> contentChildren(Posts bean) {
+    return <Widget>[
+      AspectRatio(
+        aspectRatio: 16 / 9,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(4.0), topRight: Radius.circular(4.0)),
+          child: ImageBuildView(bean.imageUrl ?? "", radius: 0.0),
+        ),
+      ),
+      ListTile(
+        leading:
+            CircleAvatar(backgroundImage: NetworkImage(bean.imageUrl ?? "")),
+        title: Text(bean.title ?? ""),
+        subtitle: Text(bean.author ?? ""),
+      ),
+      Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(bean.description ?? "",
+            maxLines: 2, overflow: TextOverflow.ellipsis), //显示两行 ...结尾
+      ),
+      ButtonTheme(
+          child: ButtonBar(
+        children: <Widget>[
+          TextButton(
+            onPressed: () {},
+            child: Text("Like".toUpperCase(),
+                style: const TextStyle(color: Colors.redAccent)),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text("Read".toUpperCase(),
+                style: const TextStyle(color: Colors.grey)),
+          ),
+        ],
+      ))
+    ];
+  }
 }
 
 // debugPrint("statusCode: ${response.data}");

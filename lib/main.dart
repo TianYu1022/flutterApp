@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:number1/demo/form_demo.dart';
 import 'package:number1/model/material_components.dart';
+import 'package:number1/project/db/hi_cache.dart';
+
 import 'demo/basic_demo.dart';
 import 'demo/botton_navigation_bar_demo.dart';
 import 'demo/drawer_demo.dart';
@@ -8,13 +10,25 @@ import 'demo/layout_demo.dart';
 import 'demo/listview_demo.dart';
 import 'demo/navigation_demo.dart';
 import 'demo/sliver_demo.dart';
-import 'demo/state/state_management_demo.dart';
 
-void main() => runApp(App());
+void main() => runApp(const App());
 
 //无状态小部件 StatelessWidget 不需要修改状态的weidget
 //有状态的小部件 StatefulWidget 需要修改状态的weidget
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    super.initState();
+    HiCache.preInit(); //初始化SP
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

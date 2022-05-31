@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 void main() {
   // testFunction(sex: "男");
-  C().a();
-  C().b();
+  // C().a();
+  // C().b();
 }
 
 void testFunction({dynamic name, int? age = 18, required String? sex}) {

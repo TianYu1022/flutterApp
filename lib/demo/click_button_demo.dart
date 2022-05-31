@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../project/http/core/hi_error.dart';
-import '../project/http/core/hi_net.dart';
-import '../project/http/request/test_request.dart';
+import '../project/db/hi_cache.dart';
 
 class ClickButtonDemo extends StatefulWidget {
   const ClickButtonDemo({Key? key}) : super(key: key);
@@ -69,18 +67,35 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
   //   showToast(msg: "点击了按钮");
   // }
 
+  // void clickButton() async {
+  //   var request = TestRequest();
+  //   request.add("aaa", "aaa").add("bbb", "bbb").add("requestPrams", "田宇");
+  //
+  //   var result = await HiNet.getInstance().fire(request);
+  //   var testEntity = TestEntity.fromJson(result);
+  //   debugPrint("睚眦 => ${testEntity.data?.requestPrams}");
+  //
+  //   /*try {
+  //     var result = await HiNet.getInstance().fire(request);
+  //     debugPrint("睚眦 result => $result");
+  //   } on NeedAuth catch (e) {
+  //     debugPrint("睚眦 NeedAuth => ${e.toString()}");
+  //   } on NeedLogin catch (e) {
+  //     debugPrint("睚眦 NeedLogin => ${e.toString()}");
+  //   } on HiNetError catch (e) {
+  //     debugPrint("睚眦 HiNetError => ${e.toString()}");
+  //   }*/
+  // }
+
   void clickButton() async {
-    var request = TestRequest();
-    request.add("aaa", "aaa").add("bbb", "bbb").add("requestPrams", "田宇");
-    try {
-      var result = await HiNet.getInstance().fire(request);
-      debugPrint("睚眦 result => $result");
-    } on NeedAuth catch (e) {
-      debugPrint("睚眦 NeedAuth => ${e.toString()}");
-    } on NeedLogin catch (e) {
-      debugPrint("睚眦 NeedLogin => ${e.toString()}");
-    } on HiNetError catch (e) {
-      debugPrint("睚眦 HiNetError => ${e.toString()}");
-    }
+    HiCache.getInstance().setString("key", "田宇11111");
+    var a = HiCache.getInstance().get<int>("key");
+    debugPrint("睚眦 => $a");
+
+    HiCache.getInstance().setString("name", "田宇");
+    HiCache.getInstance().setInt("age", 20);
+    var name = HiCache.getInstance().get("name");
+    var age = HiCache.getInstance().get("age");
+    debugPrint("睚眦 => name $name age $age");
   }
 }

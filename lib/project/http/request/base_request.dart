@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:number1/project/common/global_constant.dart';
+import 'package:number1/project/db/hi_cache.dart';
 
 enum HttpMethod { GET, POST, DELETE }
 
@@ -47,7 +49,11 @@ abstract class BaseRequest {
     return this;
   }
 
-  Map<String, dynamic> header = {};
+  // Map<String, dynamic> header = {};
+  Map<String, dynamic> header = {
+    'engineerSession':
+        "${HiCache.getInstance().get(GlobalConstant.masterId)}&&${HiCache.getInstance().get(GlobalConstant.sessionId)}",
+  };
 
   ///添加header
   BaseRequest addHeader(String key, Object v) {

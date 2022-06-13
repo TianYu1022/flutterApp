@@ -33,6 +33,7 @@ import '../demo/flexible/geeksfor_geeks2.dart';
 import '../demo/http/http_demo.dart';
 import '../demo/read_more_text_demo.dart';
 import '../test/home_page.dart';
+import 'ask_for_leave_page.dart';
 
 class MaterialComponents extends StatelessWidget {
   @override
@@ -44,9 +45,12 @@ class MaterialComponents extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
+          ListItem(title: "AskForLeavePage", page: AskForLeavePage()),
           ListItem(title: "Home", page: Home()),
 
-          ListItem(title: "CameraDemo", page: CameraDemo(title: 'Image Picker Example')),
+          ListItem(
+              title: "CameraDemo",
+              page: CameraDemo(title: 'Image Picker Example')),
 
           ListItem(title: "ReadMoreTextDemo", page: ReadMoreTextDemo()),
 
@@ -68,17 +72,27 @@ class MaterialComponents extends StatelessWidget {
 
           ListItem(title: "StreamDemo", page: StreamDemo()),
           ListItem(title: "StateManagementDemo", page: StateManagementDemo()),
-          ListItem(title: "StateManagementLessDemo", page: StateManagementLessDemo()),
+          ListItem(
+              title: "StateManagementLessDemo",
+              page: StateManagementLessDemo()),
+
           ///-------------------------------- Material风格组件 --------------------------------
           ListItem(title: "StepperDemo 步骤组件", page: StepperDemo()), //步骤
           ListItem(title: "CardDemo 卡片布局", page: CardDemo()),
-          ListItem(title: "PaginatedDataTableDemo 分页显示表格数据", page: PaginatedDataTableDemo()), //分页显示表格数据
+          ListItem(
+              title: "PaginatedDataTableDemo 分页显示表格数据",
+              page: PaginatedDataTableDemo()), //分页显示表格数据
           ListItem(title: "DataTableDemo 数据表格", page: DataTableDemo()), //数据表格
           ListItem(title: "ChipDemo label 控件", page: ChipDemo()), //label 控件
-          ListItem(title: "ExpansionPanelDemo 收缩面板", page: ExpansionPanelDemo()), //收缩面板
+          ListItem(
+              title: "ExpansionPanelDemo 收缩面板",
+              page: ExpansionPanelDemo()), //收缩面板
           ListItem(title: "SnackBarDemo 提示操作栏", page: SnackBarDemo()), //提示操作栏
-          ListItem(title: "BottomSheetDemo 底部可滑动弹窗", page: BottomSheetDemo()), //底部可滑动弹窗
-          ListItem(title: "AlertDialogDemo 提示对话框", page: AlertDialogDemo()), //提示对话框
+          ListItem(
+              title: "BottomSheetDemo 底部可滑动弹窗",
+              page: BottomSheetDemo()), //底部可滑动弹窗
+          ListItem(
+              title: "AlertDialogDemo 提示对话框", page: AlertDialogDemo()), //提示对话框
           ListItem(title: "SimpleDialogDemo", page: SimpleDialogDemo()),
           ListItem(title: "DateDemo", page: DateDemo()),
           ListItem(title: "SliderDemo", page: SliderDemo()),
@@ -87,7 +101,8 @@ class MaterialComponents extends StatelessWidget {
           ListItem(title: "CheckboxDemo", page: CheckboxDemo()),
           ListItem(title: "FromDemo", page: FromDemo()), //表单
           ListItem(title: "ButtonDemo", page: ButtonDemo()),
-          ListItem(title: "FloatingActionButton", page: FloatingActionButtonDemo()),
+          ListItem(
+              title: "FloatingActionButton", page: FloatingActionButtonDemo()),
           ListItem(title: "PopupMenuButtonDemo", page: PopupMenuButtonDemo()),
         ],
       ),

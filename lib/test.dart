@@ -4,6 +4,24 @@ void main() {
   // testFunction(sex: "男");
   // C().a();
   // C().b();
+  // TestFunction._fun2().user();
+  // TestFunction.fun1();
+}
+
+class TestFunction {
+  static void fun1() {}
+
+  TestFunction._fun2() {
+    initFun();
+  }
+
+  void initFun() {
+    debugPrint("睚眦 => 初始化");
+  }
+
+  void user() {
+    debugPrint("睚眦 => 初始化后使用");
+  }
 }
 
 void testFunction({dynamic name, int? age = 18, required String? sex}) {

@@ -104,4 +104,5 @@ lib/generated_plugin_registrant.dart
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 local.properties
+.idea/
 # End of https://www.toptal.com/developers/gitignore/api/flutter

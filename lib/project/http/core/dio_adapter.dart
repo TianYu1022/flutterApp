@@ -39,8 +39,8 @@ class DioAdapter extends HiNetAdapter {
     return HiNetResponse(
         data: response?.data,
         request: request,
-        statusCode: response?.statusCode ?? -1,
-        statusMessage: response?.statusMessage ?? "statusMessage 为空 !",
+        errorCode: response?.statusCode ?? -1,
+        errorMsg: response?.statusMessage ?? "statusMessage 为空 !",
         extra: response);
   }
 }

@@ -1,7 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:number1/project/common/global_constant.dart';
-import 'package:number1/project/db/hi_cache.dart';
-
 enum HttpMethod { GET, POST, DELETE }
 
 ///基础请求
@@ -11,7 +7,7 @@ abstract class BaseRequest {
   var useHttps = true;
 
   String authority() {
-    return "api.devio.org";
+    return "www.wanandroid.com";
   }
 
   HttpMethod httpMethod();
@@ -35,7 +31,6 @@ abstract class BaseRequest {
     } else {
       uri = Uri.http(authority(), pathStr, params);
     }
-    debugPrint("睚眦 Request Url => $uri");
     return uri.toString();
   }
 
@@ -51,8 +46,8 @@ abstract class BaseRequest {
 
   // Map<String, dynamic> header = {};
   Map<String, dynamic> header = {
-    'engineerSession':
-        "${HiCache.getInstance().get(GlobalConstant.masterId)}&&${HiCache.getInstance().get(GlobalConstant.sessionId)}",
+    // 'engineerSession':
+    //     "${HiCache.getInstance().get(GlobalConstant.masterId)}&&${HiCache.getInstance().get(GlobalConstant.sessionId)}",
   };
 
   ///添加header

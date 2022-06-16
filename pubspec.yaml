@@ -41,6 +41,12 @@ dependencies:
   video_player: ^2.4.2
   shared_preferences: ^2.0.15
 
+  # 组件化配置
+  core_http: # 网络请求
+    path: ./package/core_http
+  core_tools: # 工具模块
+    path: ./package/core_tools
+
 #  flutter_plugin_network:
 #    git:
 #      url: https://github.com/cyndibaby905/44_flutter_plugin_network.git

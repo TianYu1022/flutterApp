@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:core_tools/log_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:number1/project/http/core/dio_adapter.dart';
 import 'package:number1/project/http/core/hi_error.dart';
@@ -21,7 +24,6 @@ class HiNet {
     } on HiNetError catch (e) {
       error = e;
       response = e.data;
-      logD(e.message);
     } catch (e) {
       //其他异常
       error = e;
@@ -33,9 +35,8 @@ class HiNet {
     }
 
     var result = response?.data;
-    logD("result => $result");
-
-    var status = response?.statusCode ?? 0;
+    LogUtils.d(json.encode(result), tag: "<-- 200 SUCCESS");
+    var status = response?.errorCode ?? 0;
     switch (status) {
       case 200:
         return result;

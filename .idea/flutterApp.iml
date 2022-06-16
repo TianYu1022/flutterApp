@@ -36,6 +36,15 @@
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_plugin_network/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_plugin_network/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_plugin_network/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/package/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/package/build" />
+      <excludeFolder url="file://$MODULE_DIR$/package/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/package/core_http/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/package/core_http/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/package/core_http/build" />
+      <excludeFolder url="file://$MODULE_DIR$/package/core_tools/build" />
+      <excludeFolder url="file://$MODULE_DIR$/package/core_tools/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/package/core_tools/.pub" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

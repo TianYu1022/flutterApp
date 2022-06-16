@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:core_http/index.dart';
+import 'package:core_http/net/interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../common/http_common_constant.dart';
@@ -395,6 +397,11 @@ class DioUtil {
           ContentType.parse("application/x-www-form-urlencoded").toString();
       _dio?.options.receiveTimeout = 1000 * 30;
       _dio?.options.baseUrl = "http://www.wanandroid.com";
+
+      // 添加迭代器
+      if (kDebugMode) {
+        _dio?.interceptors.add(AppLogInterceptor());
+      }
     }
   }
 }

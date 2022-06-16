@@ -150,10 +150,10 @@ class LoginReq {
 class WanRepository {
   Future<List<BannerModel>> getBanner() async {
     BaseResp<List> baseResp = await DioUtil()
-        .createNewDio()
         .setConfig(HttpConfig(
             status: "status", code: "errorCode", msg: "errorMsg", data: "data"))
-        .request<List>(Method.get, WanAndroidApi.baseBanner);
+        .request<List>(Method.get, WanAndroidApi.baseBanner,
+            data: {"aaa": 1, "bbb": 2});
     List<BannerModel> bannerList;
     if (baseResp.code != 0) {
       return Future.error(baseResp.msg);

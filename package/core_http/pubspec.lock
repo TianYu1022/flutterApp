@@ -7,7 +7,7 @@ packages:
       name: async
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.8.2"
+    version: "2.9.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -21,7 +21,7 @@ packages:
       name: characters
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.1"
   charcode:
     dependency: transitive
     description:
@@ -53,9 +53,11 @@ packages:
   core_tools:
     dependency: "direct main"
     description:
-      path: "../core_tools"
-      relative: true
-    source: path
+      path: "package/core_tools"
+      ref: HEAD
+      resolved-ref: db0a7ae06c5463c7558ad5119b4da309eda80dcb
+      url: "git@github.com:TianYu1022/flutterApp.git"
+    source: git
     version: "0.0.1"
   dio:
     dependency: "direct main"
@@ -232,7 +234,7 @@ packages:
       name: source_span
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.8.2"
+    version: "1.9.0"
   stack_trace:
     dependency: transitive
     description:

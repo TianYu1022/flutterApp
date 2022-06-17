@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:number1/demo/bolc/application_bloc.dart';
+import 'package:number1/demo/bolc/bloc_provider.dart';
 import 'package:number1/demo/card_demo.dart';
 import 'package:number1/demo/expansion_panel.dart';
 import 'package:number1/demo/form_demo.dart';
@@ -58,7 +60,7 @@ class MaterialComponents extends StatelessWidget {
           ListItem(title: "GeeksforGeeks1", page: GeeksforGeeks1()),
           ListItem(title: "GeeksforGeeks", page: GeeksforGeeks()),
 
-          ListItem(title: "ClickButtonDemo 可点击控件", page: ClickButtonDemo()),
+          BlocProvider(child: ListItem(title: "ClickButtonDemo 可点击控件", page: ClickButtonDemo()), bloc: ApplicationBloc()),
 
           ListItem(title: "测试各种控件摆放位置", page: HomePage()),
 

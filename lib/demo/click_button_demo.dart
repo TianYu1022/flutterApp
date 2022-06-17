@@ -3,6 +3,8 @@ import 'package:core_http/protocol/base_resp.dart';
 import 'package:core_tools/json_utils.dart';
 import 'package:core_tools/log_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:number1/demo/bolc/application_bloc.dart';
+import 'package:number1/demo/bolc/bloc_provider.dart';
 
 import '../project/entity/test_entity.dart';
 import '../project/http/core/hi_net.dart';
@@ -18,54 +20,66 @@ class ClickButtonDemo extends StatefulWidget {
 class _ClickButtonDemoState extends State<ClickButtonDemo> {
   @override
   Widget build(BuildContext context) {
+    ApplicationBloc applicationBloc = BlocProvider.of<ApplicationBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("ClickButtonDemo"),
         elevation: 0.0,
       ),
-      body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Stack(
-              alignment: Alignment.topLeft, //对齐方式
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
-                  child: SizedBox(
-                    width: 100.0,
-                    height: 100.0,
-                    child: Container(
-                      alignment: Alignment(0.0, 0.0),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(3, 54, 255, 1.0),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 200.0,
-                  height: 30.0,
-                  child: GestureDetector(
-                    //子 widget 可点击控件
-                    onTap: clickButton,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(3, 54, 255, 1.0),
-                          shape: BoxShape.circle,
-                          gradient: RadialGradient(//镜像渐变
-                              colors: [Colors.green, Colors.green])),
-                      child: Icon(Icons.add, color: Colors.white, size: 32.0),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
+      body: StreamBuilder(
+          stream: applicationBloc.appEventStream,
+          builder: (BuildContext context,
+              AsyncSnapshot<List<BannerModel>> snapshot) {
+            return ListView.builder(itemBuilder: (context, index) {
+              BannerModel model = snapshot.data ?? [][index];
+              return ListTile(
+                title: Text(model.title ?? ''),
+              );
+            });
+          }),
+      // body: Container(
+      //   padding: EdgeInsets.all(16.0),
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       Stack(
+      //         alignment: Alignment.topLeft, //对齐方式
+      //         children: [
+      //           Padding(
+      //             padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+      //             child: SizedBox(
+      //               width: 100.0,
+      //               height: 100.0,
+      //               child: Container(
+      //                 alignment: Alignment(0.0, 0.0),
+      //                 decoration: BoxDecoration(
+      //                   color: Color.fromRGBO(3, 54, 255, 1.0),
+      //                   borderRadius: BorderRadius.circular(8.0),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //           SizedBox(
+      //             width: 200.0,
+      //             height: 30.0,
+      //             child: GestureDetector(
+      //               //子 widget 可点击控件
+      //               onTap: clickButton,
+      //               child: Container(
+      //                 decoration: BoxDecoration(
+      //                     color: Color.fromRGBO(3, 54, 255, 1.0),
+      //                     shape: BoxShape.circle,
+      //                     gradient: RadialGradient(//镜像渐变
+      //                         colors: [Colors.green, Colors.green])),
+      //                 child: Icon(Icons.add, color: Colors.white, size: 32.0),
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       )
+      //     ],
+      //   ),
+      // ),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 /// 使用flutter日志打印
 class LogUtils {
   static const String _defTag = 'FlutterLogUtils';
@@ -55,19 +57,21 @@ class LogUtils {
       tag = _tagValue;
     }
     if (da.length <= _maxLen) {
-      print('$tag$stag $da');
+      debugPrint('$tag$stag $da');
       return;
     }
-    print('$tag$stag — — — — — — — — — — st — — — — — — — — — — — — —');
+    debugPrint(
+        '$tag$stag ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════');
     while (da.isNotEmpty) {
       if (da.length > _maxLen) {
-        print('$tag$stag| ${da.substring(0, _maxLen)}');
+        debugPrint('$tag$stag ║ ${da.substring(0, _maxLen)}');
         da = da.substring(_maxLen, da.length);
       } else {
-        print('$tag$stag| $da');
+        debugPrint('$tag$stag ║ $da');
         da = '';
       }
     }
-    print('$tag$stag — — — — — — — — — — ed — — — — — — — — — ---— —');
+    debugPrint(
+        '$tag$stag ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════');
   }
 }

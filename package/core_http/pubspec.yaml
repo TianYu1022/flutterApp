@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   dio: ^4.0.6
 
+  core_tools: # 工具模块
+    path: ../core_tools
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

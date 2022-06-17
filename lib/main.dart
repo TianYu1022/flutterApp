@@ -1,5 +1,4 @@
 import 'package:core_http/app/api_manager.dart';
-import 'package:core_http/common/http_common_constant.dart';
 import 'package:core_http/net/dio_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +63,6 @@ class _AppState extends State<App> {
   }
 
   void initHttp() {
-    DioUtil.openDebug();
     Options options = DioUtil.getDefOptions();
     HttpConfig config = HttpConfig(
         status: "status",

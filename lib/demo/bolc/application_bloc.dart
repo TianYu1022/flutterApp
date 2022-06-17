@@ -1,8 +1,6 @@
-import 'dart:collection';
-
-import 'package:number1/demo/bolc/bloc_provider.dart';
-import 'package:number1/demo/click_button_demo.dart';
+import 'package:core_http/app/api_manager.dart';
 import 'package:rxdart/rxdart.dart';
+import 'bloc_provider.dart';
 
 class ApplicationBloc implements BlocBase {
   final BehaviorSubject<List<BannerModel>> _appEvent = BehaviorSubject();
@@ -10,7 +8,12 @@ class ApplicationBloc implements BlocBase {
   Sink<List<BannerModel>> get _appEventSink => _appEvent.sink;
 
   Stream<List<BannerModel>> get appEventStream => _appEvent.stream;
-  final WanRepository _wanRepository = WanRepository();
+
+  Future? getBannerList() async {
+    return ApiManager.instance
+        .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson())
+        .then((data) => _appEventSink.add(data));
+  }
 
   @override
   void dispose() {
@@ -30,13 +33,5 @@ class ApplicationBloc implements BlocBase {
   @override
   Future? onRefresh({String? labelId}) {
     return null;
-  }
-
-  Future? getBannerList() async {
-    return _wanRepository
-        .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson())
-        .then((list) {
-      _appEventSink.add(list);
-    });
   }
 }

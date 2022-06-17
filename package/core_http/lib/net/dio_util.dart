@@ -17,6 +17,32 @@ class Method {
   static const String patch = "PATCH";
 }
 
+/// dio 配置项
+class HttpConfigs {
+  final String? baseUrl;
+
+  // final String? proxy;
+  // final String? cookiesPath;
+  final List<Interceptor>? interceptors;
+  final int connectTimeout;
+  final int sendTimeout;
+  final int receiveTimeout;
+  final Map<String, dynamic>? headers;
+
+  HttpConfigs({
+    this.baseUrl,
+    this.headers,
+    // this.proxy,
+    // this.cookiesPath,
+    this.interceptors,
+    this.connectTimeout = Duration.millisecondsPerMinute,
+    this.sendTimeout = Duration.millisecondsPerMinute,
+    this.receiveTimeout = Duration.millisecondsPerMinute,
+  });
+
+// static DioConfig of() => Get.find<DioConfig>();
+}
+
 ///Http配置.
 class HttpConfig {
   /// constructor.
@@ -25,7 +51,7 @@ class HttpConfig {
     required this.code,
     required this.msg,
     required this.data,
-    // required this.options,
+    required this.options,
     // required this.pem,
     // required this.pKCSPath,
     // required this.pKCSPwd,
@@ -44,7 +70,7 @@ class HttpConfig {
   String data;
 
   /// Options.
-// Options options;
+  Options options;
 
   /// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
   /// PEM证书内容.
@@ -176,8 +202,6 @@ class DioUtil {
       data,
       Options? options,
       CancelToken? cancelToken}) async {
-    setConfig(HttpConfig(
-        status: "status", code: "errorCode", msg: "errorMsg", data: "data"));
     Response? response = await _dio?.request(path,
         data: data,
         options: _checkOptions(method, getDefOptions()),
@@ -391,12 +415,12 @@ class DioUtil {
   static setDefOptions() {
     if (_dio != null) {
       _dio?.options = BaseOptions(
-        baseUrl: HttpCommonConstant.baseUrl,
-        // contentType:
-        //     ContentType.parse("application/x-www-form-urlencoded").toString(),
-        contentType: ContentType.parse("application/json").toString(),
-        receiveTimeout: 1000 * 30,
-      );
+          baseUrl: HttpCommonConstant.baseUrl,
+          // contentType:
+          //     ContentType.parse("application/x-www-form-urlencoded").toString(),
+          contentType: ContentType.parse("application/json").toString(),
+          receiveTimeout: 1000 * 30,
+          headers: header);
 
       // 添加迭代器
       if (kDebugMode) {

@@ -1,3 +1,7 @@
+import 'package:core_http/app/api_manager.dart';
+import 'package:core_http/common/http_common_constant.dart';
+import 'package:core_http/net/dio_util.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:number1/demo/form_demo.dart';
 import 'package:number1/model/material_components.dart';
@@ -25,7 +29,8 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    HiCache.preInit(); //初始化SP
+
+    init(); //初始化
   }
 
   @override
@@ -50,6 +55,25 @@ class _AppState extends State<App> {
         toggleableActiveColor: Colors.green,
       ),
     );
+  }
+
+  void init() async {
+    await HiCache.preInit(); //初始化SP
+    await ApiManager.instance.initClient();
+    initHttp();
+  }
+
+  void initHttp() {
+    DioUtil.openDebug();
+    Options options = DioUtil.getDefOptions();
+    HttpConfig config = HttpConfig(
+        status: "status",
+        code: "errorCode",
+        msg: "errorMsg",
+        data: "data",
+        options: options);
+
+    DioUtil().setConfig(config);
   }
 }
 

@@ -1,15 +1,11 @@
+import 'package:core_http/app/api_manager.dart';
 import 'package:core_http/net/dio_util.dart';
 import 'package:core_http/protocol/base_resp.dart';
-import 'package:core_tools/json_utils.dart';
 import 'package:core_tools/log_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:number1/demo/bolc/application_bloc.dart';
-import 'package:number1/demo/bolc/bloc_provider.dart';
-import 'package:rxdart/rxdart.dart';
 
-import '../project/entity/test_entity.dart';
-import '../project/http/core/hi_net.dart';
-import '../project/http/request/test_request.dart';
+import 'bolc/bloc_provider.dart';
 
 class ClickButtonDemo extends StatefulWidget {
   const ClickButtonDemo({Key? key}) : super(key: key);
@@ -21,10 +17,9 @@ class ClickButtonDemo extends StatefulWidget {
 class _ClickButtonDemoState extends State<ClickButtonDemo> {
   @override
   Widget build(BuildContext context) {
-    ApplicationBloc applicationBloc = ApplicationBloc();
-    // ApplicationBloc? applicationBloc =
-    //     BlocProvider.of<ApplicationBloc>(context);
-    // applicationBloc.getData();
+    ApplicationBloc? applicationBloc =
+        BlocProvider.of<ApplicationBloc>(context);
+    // ?? ApplicationBloc();
 
     return Scaffold(
       appBar: AppBar(
@@ -32,22 +27,23 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
         elevation: 0.0,
       ),
       // body: StreamBuilder(
-      //     stream: applicationBloc.appEventStream,
+      //     stream: applicationBloc?.appEventStream,
       //     builder:
       //         (BuildContext context, AsyncSnapshot<List<BannerModel>> data) {
-      //       return ListView.builder(
-      //           itemCount: data.data?.length ?? 0,
-      //           itemBuilder: (context, index) {
-      //             if (data.data == null) {
-      //               return const CircularProgressIndicator();
-      //             } else {
-      //               // return Text(data.data?[index].title ?? "");
-      //               // BannerModel model = snapshot.data ?? [][index];
+      //       if (data.data == null) {
+      //         applicationBloc?.getData();
+      //         return const Center(child: CircularProgressIndicator());
+      //       } else {
+      //         return ListView.builder(
+      //             itemCount: data.data?.length ?? 0,
+      //             itemBuilder: (context, index) {
       //               return ListTile(
       //                 title: Text(data.data?[index].title ?? ""),
       //               );
-      //             }
-      //           });
+      //             });
+      //         // return Text(data.data?[index].title ?? "");
+      //         // BannerModel model = snapshot.data ?? [][index];
+      //       }
       //     }),
 
       body: Container(
@@ -120,9 +116,15 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
   // }
 
   void clickButton() async {
+    //
+    // ApiManager.instance
+    //     .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson())
+    //     .then((value) => value.forEach((element) {
+    //           LogUtils.d(element.title ?? "", tag: "测试数据");
+    //         }));
+
     List<BannerModel> banner = await WanRepository()
         .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson());
-
     for (var element in banner) {
       LogUtils.d(element.title ?? "", tag: "测试数据");
     }
@@ -175,23 +177,6 @@ class LoginReq {
   }
 }
 
-class ReqData {
-  var name = "";
-  var sex = "男";
-  var age = 18;
-
-  ReqData({required this.name, required this.sex, required this.age});
-
-  /// jsonDecode(jsonStr) 方法中会调用实体类的这个方法。如果实体类中没有这个方法，会报错。
-  Map toJson() {
-    Map map = {};
-    map["name"] = name;
-    map["sex"] = sex;
-    map["age ="] = age;
-    return map;
-  }
-}
-
 class WanRepository {
   Future<List<BannerModel>> getBanner(Map<dynamic, dynamic> json) async {
     BaseResp<List> baseResp = await DioUtil().request<List>(
@@ -206,50 +191,5 @@ class WanRepository {
       return BannerModel.fromJson(value);
     }).toList();
     return bannerList;
-  }
-}
-
-class BannerModel {
-  String? desc;
-  int? id;
-  String? imagePath;
-  int? isVisible;
-  int? order;
-  String? title;
-  int? type;
-  String? url;
-
-  BannerModel(
-      {this.desc,
-      this.id,
-      this.imagePath,
-      this.isVisible,
-      this.order,
-      this.title,
-      this.type,
-      this.url});
-
-  BannerModel.fromJson(Map<String, dynamic> json) {
-    desc = json['desc'];
-    id = json['id'];
-    imagePath = json['imagePath'];
-    isVisible = json['isVisible'];
-    order = json['order'];
-    title = json['title'];
-    type = json['type'];
-    url = json['url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['desc'] = desc;
-    data['id'] = id;
-    data['imagePath'] = imagePath;
-    data['isVisible'] = isVisible;
-    data['order'] = order;
-    data['title'] = title;
-    data['type'] = type;
-    data['url'] = url;
-    return data;
   }
 }

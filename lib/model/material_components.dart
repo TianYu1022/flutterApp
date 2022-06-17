@@ -60,7 +60,11 @@ class MaterialComponents extends StatelessWidget {
           ListItem(title: "GeeksforGeeks1", page: GeeksforGeeks1()),
           ListItem(title: "GeeksforGeeks", page: GeeksforGeeks()),
 
-          BlocProvider(child: ListItem(title: "ClickButtonDemo 可点击控件", page: ClickButtonDemo()), bloc: ApplicationBloc()),
+          // BlocProvider(bloc: ApplicationBloc(), child: ListItem(title: "ClickButtonDemo 可点击控件", page: const ClickButtonDemo())),
+          ListItem(
+              title: "ClickButtonDemo 可点击控件",
+              page: BlocProvider(
+                  bloc: ApplicationBloc(), child: const ClickButtonDemo())),
 
           ListItem(title: "测试各种控件摆放位置", page: HomePage()),
 

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:number1/demo/bolc/bloc_provider.dart';
 import 'package:number1/demo/click_button_demo.dart';
 import 'package:rxdart/rxdart.dart';
@@ -8,7 +10,7 @@ class ApplicationBloc implements BlocBase {
   Sink<List<BannerModel>> get _appEventSink => _appEvent.sink;
 
   Stream<List<BannerModel>> get appEventStream => _appEvent.stream;
-
+  WanRepository _wanRepository = WanRepository();
   @override
   void dispose() {
     _appEvent.close();
@@ -16,7 +18,7 @@ class ApplicationBloc implements BlocBase {
 
   @override
   Future? getData({String? labelId, int? page}) {
-    return null;
+    return getBannerList();
   }
 
   @override
@@ -27,5 +29,10 @@ class ApplicationBloc implements BlocBase {
   @override
   Future? onRefresh({String? labelId}) {
     return null;
+  }
+
+  Future? getBannerList() async{
+    List<BannerModel> banner = await _wanRepository.getBanner();
+    _appEventSink.add(UnmodifiableListView(banner));
   }
 }

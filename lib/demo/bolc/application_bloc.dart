@@ -33,8 +33,10 @@ class ApplicationBloc implements BlocBase {
   }
 
   Future? getBannerList() async {
-    return _wanRepository.getBanner().then((list) {
-      _appEventSink.add(UnmodifiableListView(list));
+    return _wanRepository
+        .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson())
+        .then((list) {
+      _appEventSink.add(list);
     });
   }
 }

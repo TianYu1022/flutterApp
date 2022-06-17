@@ -5,6 +5,7 @@ import 'package:core_tools/log_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:number1/demo/bolc/application_bloc.dart';
 import 'package:number1/demo/bolc/bloc_provider.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../project/entity/test_entity.dart';
 import '../project/http/core/hi_net.dart';
@@ -20,66 +21,78 @@ class ClickButtonDemo extends StatefulWidget {
 class _ClickButtonDemoState extends State<ClickButtonDemo> {
   @override
   Widget build(BuildContext context) {
-    ApplicationBloc applicationBloc = BlocProvider.of<ApplicationBloc>(context);
+    ApplicationBloc applicationBloc = ApplicationBloc();
+    // ApplicationBloc? applicationBloc =
+    //     BlocProvider.of<ApplicationBloc>(context);
+    // applicationBloc.getData();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("ClickButtonDemo"),
         elevation: 0.0,
       ),
-      body: StreamBuilder(
-          stream: applicationBloc.appEventStream,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<BannerModel>> snapshot) {
-            return ListView.builder(itemBuilder: (context, index) {
-              BannerModel model = snapshot.data ?? [][index];
-              return ListTile(
-                title: Text(model.title ?? ''),
-              );
-            });
-          }),
-      // body: Container(
-      //   padding: EdgeInsets.all(16.0),
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //       Stack(
-      //         alignment: Alignment.topLeft, //对齐方式
-      //         children: [
-      //           Padding(
-      //             padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
-      //             child: SizedBox(
-      //               width: 100.0,
-      //               height: 100.0,
-      //               child: Container(
-      //                 alignment: Alignment(0.0, 0.0),
-      //                 decoration: BoxDecoration(
-      //                   color: Color.fromRGBO(3, 54, 255, 1.0),
-      //                   borderRadius: BorderRadius.circular(8.0),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //           SizedBox(
-      //             width: 200.0,
-      //             height: 30.0,
-      //             child: GestureDetector(
-      //               //子 widget 可点击控件
-      //               onTap: clickButton,
-      //               child: Container(
-      //                 decoration: BoxDecoration(
-      //                     color: Color.fromRGBO(3, 54, 255, 1.0),
-      //                     shape: BoxShape.circle,
-      //                     gradient: RadialGradient(//镜像渐变
-      //                         colors: [Colors.green, Colors.green])),
-      //                 child: Icon(Icons.add, color: Colors.white, size: 32.0),
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       )
-      //     ],
-      //   ),
-      // ),
+      // body: StreamBuilder(
+      //     stream: applicationBloc.appEventStream,
+      //     builder:
+      //         (BuildContext context, AsyncSnapshot<List<BannerModel>> data) {
+      //       return ListView.builder(
+      //           itemCount: data.data?.length ?? 0,
+      //           itemBuilder: (context, index) {
+      //             if (data.data == null) {
+      //               return const CircularProgressIndicator();
+      //             } else {
+      //               // return Text(data.data?[index].title ?? "");
+      //               // BannerModel model = snapshot.data ?? [][index];
+      //               return ListTile(
+      //                 title: Text(data.data?[index].title ?? ""),
+      //               );
+      //             }
+      //           });
+      //     }),
+
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Stack(
+              alignment: Alignment.topLeft, //对齐方式
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: SizedBox(
+                    width: 100.0,
+                    height: 100.0,
+                    child: Container(
+                      alignment: Alignment(0.0, 0.0),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(3, 54, 255, 1.0),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 200.0,
+                  height: 30.0,
+                  child: GestureDetector(
+                    //子 widget 可点击控件
+                    onTap: clickButton,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(3, 54, 255, 1.0),
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(//镜像渐变
+                              colors: [Colors.green, Colors.green])),
+                      child: Icon(Icons.add, color: Colors.white, size: 32.0),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -107,7 +120,8 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
   // }
 
   void clickButton() async {
-    List<BannerModel> banner = await WanRepository().getBanner();
+    List<BannerModel> banner = await WanRepository()
+        .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson());
 
     for (var element in banner) {
       LogUtils.d(element.title ?? "", tag: "测试数据");
@@ -129,7 +143,7 @@ class WanAndroidApi {
     if (page != null) {
       sb.write('/$page');
     }
-    if (resType != null && resType.isNotEmpty) {
+    if (resType.isNotEmpty) {
       sb.write('/$resType');
     }
     return sb.toString();
@@ -161,13 +175,29 @@ class LoginReq {
   }
 }
 
+class ReqData {
+  var name = "";
+  var sex = "男";
+  var age = 18;
+
+  ReqData({required this.name, required this.sex, required this.age});
+
+  /// jsonDecode(jsonStr) 方法中会调用实体类的这个方法。如果实体类中没有这个方法，会报错。
+  Map toJson() {
+    Map map = {};
+    map["name"] = name;
+    map["sex"] = sex;
+    map["age ="] = age;
+    return map;
+  }
+}
+
 class WanRepository {
-  Future<List<BannerModel>> getBanner() async {
-    BaseResp<List> baseResp = await DioUtil()
-        .setConfig(HttpConfig(
-            status: "status", code: "errorCode", msg: "errorMsg", data: "data"))
-        .request<List>(Method.get, WanAndroidApi.baseBanner,
-            data: {"aaa": 1, "bbb": 2});
+  Future<List<BannerModel>> getBanner(Map<dynamic, dynamic> json) async {
+    BaseResp<List> baseResp = await DioUtil().request<List>(
+        WanAndroidApi.baseBanner,
+        method: Method.get,
+        data: json);
     List<BannerModel> bannerList;
     if (baseResp.code != 0) {
       return Future.error(baseResp.msg);

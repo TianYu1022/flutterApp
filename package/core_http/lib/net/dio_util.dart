@@ -1,23 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:core_http/index.dart';
 import 'package:core_http/net/interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import '../common/http_common_constant.dart';
 import '../protocol/base_resp.dart';
-
-/**
- * @Author: thl
- * @GitHub: https://github.com/Sky24n
- * @JianShu: https://www.jianshu.com/u/cbf2ad25d33a
- * @Email: 863764940@qq.com
- * @Description: Dio Util.
- * @Date: 2018/12/19
- */
 
 /// 请求方法.
 class Method {
@@ -178,16 +166,21 @@ class DioUtil {
   // }
 
   /// 使用选项发出 http 请求。
-  /// [method] 请求方法。
+  /// [method] 请求方法。 默认POST请求
   /// [path] 网址路径。
   /// [data] 请求数据
   /// [options] 请求选项。
   /// <BaseResp<T> 返回 状态码消息数据。
-  Future<BaseResp<T>> request<T>(String method, String path,
-      {data, Options? options, CancelToken? cancelToken}) async {
+  Future<BaseResp<T>> request<T>(String path,
+      {String method = Method.post,
+      data,
+      Options? options,
+      CancelToken? cancelToken}) async {
+    setConfig(HttpConfig(
+        status: "status", code: "errorCode", msg: "errorMsg", data: "data"));
     Response? response = await _dio?.request(path,
         data: data,
-        options: _checkOptions(method, options),
+        options: _checkOptions(method, getDefOptions()),
         cancelToken: cancelToken);
     // _printHttpLog(response);
     String _status;
@@ -380,23 +373,30 @@ class DioUtil {
     return DioUtil();
   }
 
+  static Map<String, dynamic> header = {
+    // 'engineerSession':
+    //     "${HiCache.getInstance().get(GlobalConstant.masterId)}&&${HiCache.getInstance().get(GlobalConstant.sessionId)}",
+  };
+
   /// get Def Options.
   static Options getDefOptions() {
-    Options options = Options();
-    options.contentType =
-        ContentType.parse("application/x-www-form-urlencoded").toString();
-    // options.connectTimeout = 1000 * 30;
+    Options options = Options(headers: header);
+    // options.contentType =
+    //     ContentType.parse("application/x-www-form-urlencoded").toString();
+    options.contentType = ContentType.parse("application/json").toString();
     options.receiveTimeout = 1000 * 30;
     return options;
   }
 
   static setDefOptions() {
     if (_dio != null) {
-      _dio?.options.baseUrl = HttpCommonConstant.baseUrl;
-      _dio?.options.contentType =
-          ContentType.parse("application/x-www-form-urlencoded").toString();
-      _dio?.options.receiveTimeout = 1000 * 30;
-      _dio?.options.baseUrl = "http://www.wanandroid.com";
+      _dio?.options = BaseOptions(
+        baseUrl: HttpCommonConstant.baseUrl,
+        // contentType:
+        //     ContentType.parse("application/x-www-form-urlencoded").toString(),
+        contentType: ContentType.parse("application/json").toString(),
+        receiveTimeout: 1000 * 30,
+      );
 
       // 添加迭代器
       if (kDebugMode) {

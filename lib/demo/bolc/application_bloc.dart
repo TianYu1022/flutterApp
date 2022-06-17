@@ -10,7 +10,8 @@ class ApplicationBloc implements BlocBase {
   Sink<List<BannerModel>> get _appEventSink => _appEvent.sink;
 
   Stream<List<BannerModel>> get appEventStream => _appEvent.stream;
-  WanRepository _wanRepository = WanRepository();
+  final WanRepository _wanRepository = WanRepository();
+
   @override
   void dispose() {
     _appEvent.close();
@@ -31,8 +32,9 @@ class ApplicationBloc implements BlocBase {
     return null;
   }
 
-  Future? getBannerList() async{
-    List<BannerModel> banner = await _wanRepository.getBanner();
-    _appEventSink.add(UnmodifiableListView(banner));
+  Future? getBannerList() async {
+    return _wanRepository.getBanner().then((list) {
+      _appEventSink.add(UnmodifiableListView(list));
+    });
   }
 }

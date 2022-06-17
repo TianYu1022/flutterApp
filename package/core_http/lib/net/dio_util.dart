@@ -339,7 +339,7 @@ class DioUtil {
           headers: header);
 
       // 添加拦截器
-      if (HttpCommonConstant.isDebug) {
+      if (kDebugMode) {
         _dio?.interceptors.add(AppLogInterceptor());
       }
     }

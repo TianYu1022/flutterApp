@@ -29,7 +29,7 @@ class AppLogInterceptor extends Interceptor {
     // 此处根据业务逻辑，自行增加 requestUrl requestMethod headers queryParameters 等参数的打印
     LogUtils.d(
         "—————————————————————————————————— 🚀 Request Start 🚀 —————————————————————————————————— ");
-    LogUtils.d("<-- URL -- ${HttpCommonConstant.baseUrl}${options.path}");
+    LogUtils.d("<-- URL -- ${options.baseUrl}${options.path}");
     LogUtils.d("<-- 入参 -- ${json.encode(options.data)}");
     super.onRequest(options, handler);
   }

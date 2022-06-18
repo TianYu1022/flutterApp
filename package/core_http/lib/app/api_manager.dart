@@ -28,7 +28,7 @@ class ApiManager {
 
   initClient() async {
     HttpConfigs dioConfig = HttpConfigs(
-        baseUrl: HttpCommonConstant.baseUrl,
+        // baseUrl: HttpCommonConstant.baseUrl,
         headers: header,
         interceptors: [AppLogInterceptor()]);
 

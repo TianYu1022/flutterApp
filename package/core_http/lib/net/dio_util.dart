@@ -70,7 +70,7 @@ class HttpConfig {
   String data;
 
   /// Options.
-  Options options;
+  BaseOptions options;
 
   /// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
   /// PEM证书内容.
@@ -139,8 +139,7 @@ class DioUtil {
     _codeKey = config.code;
     _msgKey = config.msg;
     _dataKey = config.data;
-
-    _setDefOptions();
+    _setDefOptions(config.options);
   }
 
   /// 使用选项发出 http 请求。
@@ -327,17 +326,18 @@ class DioUtil {
     return options;
   }
 
-  /// 设置默认选项
-  void _setDefOptions() {
-    if (_dio != null) {
-      _dio?.options = BaseOptions(
-          baseUrl: HttpCommonConstant.baseUrl,
-          // contentType:
-          //     ContentType.parse("application/x-www-form-urlencoded").toString(),
-          contentType: ContentType.parse("application/json").toString(),
-          receiveTimeout: 1000 * 30,
-          headers: header);
+  /// get Def Options.
+  static BaseOptions getDefBaseOptions() {
+    BaseOptions options = BaseOptions(headers: header);
+    options.contentType = ContentType.parse("application/json").toString();
+    options.receiveTimeout = 1000 * 30;
+    return options;
+  }
 
+  /// 设置默认选项
+  void _setDefOptions(BaseOptions baseOptions) {
+    if (_dio != null) {
+      _dio?.options = baseOptions;
       // 添加拦截器
       if (kDebugMode) {
         _dio?.interceptors.add(AppLogInterceptor());

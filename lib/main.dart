@@ -63,14 +63,14 @@ class _AppState extends State<App> {
   }
 
   void initHttp() {
-    Options options = DioUtil.getDefOptions();
+    BaseOptions options = DioUtil.getDefBaseOptions();
+    options.baseUrl = '';
     HttpConfig config = HttpConfig(
         status: "status",
         code: "errorCode",
         msg: "errorMsg",
         data: "data",
         options: options);
-
     DioUtil().setConfig(config);
   }
 }

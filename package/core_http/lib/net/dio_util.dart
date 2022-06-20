@@ -52,6 +52,7 @@ class HttpConfig {
     required this.msg,
     required this.data,
     required this.options,
+    required this.interceptors,
     // required this.pem,
     // required this.pKCSPath,
     // required this.pKCSPwd,
@@ -59,6 +60,7 @@ class HttpConfig {
 
   /// BaseResp [String status]字段 key, 默认：status.
   String status;
+  List<Interceptor> interceptors;
 
   /// BaseResp [int code]字段 key, 默认：errorCode.
   String code;
@@ -72,16 +74,16 @@ class HttpConfig {
   /// Options.
   BaseOptions options;
 
-  /// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
-  /// PEM证书内容.
+/// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
+/// PEM证书内容.
 // String pem;
 
-  /// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
-  /// PKCS12 证书路径.
+/// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
+/// PKCS12 证书路径.
 // String pKCSPath;
 
-  /// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
-  /// PKCS12 证书密码.
+/// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
+/// PKCS12 证书密码.
 // String pKCSPwd;
 }
 
@@ -140,6 +142,7 @@ class DioUtil {
     _msgKey = config.msg;
     _dataKey = config.data;
     _setDefOptions(config.options);
+    _setInterceptors(config.interceptors);
   }
 
   /// 使用选项发出 http 请求。
@@ -150,9 +153,9 @@ class DioUtil {
   /// <BaseResp<T> 返回 状态码消息数据。
   Future<BaseResp<T>> request<T>(String path,
       {String method = Method.post,
-      data,
-      Options? options,
-      CancelToken? cancelToken}) async {
+        data,
+        Options? options,
+        CancelToken? cancelToken}) async {
     Response? response = await _dio?.request(path,
         data: data,
         options: _checkOptions(method, getDefOptions()),
@@ -281,7 +284,9 @@ class DioUtil {
 
   /// decode response data.
   Map<String, dynamic> _decodeData(Response response) {
-    if (response.data == null || response.data.toString().isEmpty) {
+    if (response.data == null || response.data
+        .toString()
+        .isEmpty) {
       return {};
     }
     return json.decode(response.data.toString());
@@ -344,10 +349,11 @@ class DioUtil {
       }
     }
   }
+
   /// 设置拦截器
-  void _setInterceptors(Interceptor interceptor) {
+  void _setInterceptors(List<Interceptor> interceptor) {
     if (_dio != null) {
-        _dio?.interceptors.add(interceptor);
+      _dio?.interceptors.addAll(interceptor);
     }
   }
 }

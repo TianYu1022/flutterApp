@@ -1,11 +1,8 @@
-import 'package:core_http/app/api_manager.dart';
-import 'package:core_http/net/dio_util.dart';
-import 'package:core_http/protocol/base_resp.dart';
-import 'package:core_tools/log_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:number1/demo/bolc/application_bloc.dart';
 
 import 'bolc/bloc_provider.dart';
+import 'bolc/models.dart';
 
 class ClickButtonDemo extends StatefulWidget {
   const ClickButtonDemo({Key? key}) : super(key: key);
@@ -17,78 +14,78 @@ class ClickButtonDemo extends StatefulWidget {
 class _ClickButtonDemoState extends State<ClickButtonDemo> {
   @override
   Widget build(BuildContext context) {
-    ApplicationBloc? applicationBloc =
-        BlocProvider.of<ApplicationBloc>(context);
-    // ?? ApplicationBloc();
+    ApplicationBloc applicationBloc =
+        BlocProvider.of<ApplicationBloc>(context) ?? ApplicationBloc();
 
     return Scaffold(
       appBar: AppBar(
         title: Text("ClickButtonDemo"),
         elevation: 0.0,
       ),
-      // body: StreamBuilder(
-      //     stream: applicationBloc?.appEventStream,
-      //     builder:
-      //         (BuildContext context, AsyncSnapshot<List<BannerModel>> data) {
-      //       if (data.data == null) {
-      //         applicationBloc?.getData();
-      //         return const Center(child: CircularProgressIndicator());
-      //       } else {
-      //         return ListView.builder(
-      //             itemCount: data.data?.length ?? 0,
-      //             itemBuilder: (context, index) {
-      //               return ListTile(
-      //                 title: Text(data.data?[index].title ?? ""),
-      //               );
-      //             });
-      //         // return Text(data.data?[index].title ?? "");
-      //         // BannerModel model = snapshot.data ?? [][index];
-      //       }
-      //     }),
+      body: StreamBuilder(
+          stream: applicationBloc.reposStream,
+          builder:
+              (BuildContext context, AsyncSnapshot<List<ReposModel>> snapshot) {
+            if (snapshot.data == null) {
+              // applicationBloc.getData();
+              applicationBloc.getArticleListData();
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return ListView.builder(
+                  itemCount: snapshot.data?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(snapshot.data?[index].title ?? ""),
+                    );
+                  });
+              // return Text(data.data?[index].title ?? "");
+              // BannerModel model = snapshot.data ?? [][index];
+            }
+          }),
 
-      body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Stack(
-              alignment: Alignment.topLeft, //对齐方式
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
-                  child: SizedBox(
-                    width: 100.0,
-                    height: 100.0,
-                    child: Container(
-                      alignment: Alignment(0.0, 0.0),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(3, 54, 255, 1.0),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 200.0,
-                  height: 30.0,
-                  child: GestureDetector(
-                    //子 widget 可点击控件
-                    onTap: clickButton,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(3, 54, 255, 1.0),
-                          shape: BoxShape.circle,
-                          gradient: RadialGradient(//镜像渐变
-                              colors: [Colors.green, Colors.green])),
-                      child: Icon(Icons.add, color: Colors.white, size: 32.0),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
+      // body: Container(
+      //   padding: EdgeInsets.all(16.0),
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       Stack(
+      //         alignment: Alignment.topLeft, //对齐方式
+      //         children: [
+      //           Padding(
+      //             padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+      //             child: SizedBox(
+      //               width: 100.0,
+      //               height: 100.0,
+      //               child: Container(
+      //                 alignment: Alignment(0.0, 0.0),
+      //                 decoration: BoxDecoration(
+      //                   color: Color.fromRGBO(3, 54, 255, 1.0),
+      //                   borderRadius: BorderRadius.circular(8.0),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //           SizedBox(
+      //             width: 200.0,
+      //             height: 30.0,
+      //             child: GestureDetector(
+      //               //子 widget 可点击控件
+      //               onTap: clickButton,
+      //               child: Container(
+      //                 decoration: BoxDecoration(
+      //                     color: Color.fromRGBO(3, 54, 255, 1.0),
+      //                     shape: BoxShape.circle,
+      //                     gradient: RadialGradient(//镜像渐变
+      //                         colors: [Colors.green, Colors.green])),
+      //                 child: Icon(Icons.add, color: Colors.white, size: 32.0),
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       )
+      //     ],
+      //   ),
+      // ),
     );
   }
 
@@ -115,20 +112,7 @@ class _ClickButtonDemoState extends State<ClickButtonDemo> {
   //   LogUtils.d(entity.data?.first.desc ?? "", tag: "desc");
   // }
 
-  void clickButton() async {
-    //
-    // ApiManager.instance
-    //     .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson())
-    //     .then((value) => value.forEach((element) {
-    //           LogUtils.d(element.title ?? "", tag: "测试数据");
-    //         }));
-
-    List<BannerModel> banner = await WanRepository()
-        .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson());
-    for (var element in banner) {
-      LogUtils.d(element.title ?? "", tag: "测试数据");
-    }
-  }
+  void clickButton() async {}
 }
 
 class WanAndroidApi {
@@ -174,22 +158,5 @@ class LoginReq {
     sb.write(",\"password\":$password");
     sb.write('}');
     return sb.toString();
-  }
-}
-
-class WanRepository {
-  Future<List<BannerModel>> getBanner(Map<dynamic, dynamic> json) async {
-    BaseResp<List> baseResp = await DioUtil().request<List>(
-        WanAndroidApi.baseBanner,
-        method: Method.get,
-        data: json);
-    List<BannerModel> bannerList;
-    if (baseResp.code != 0) {
-      return Future.error(baseResp.msg);
-    }
-    bannerList = baseResp.data.map((value) {
-      return BannerModel.fromJson(value);
-    }).toList();
-    return bannerList;
   }
 }

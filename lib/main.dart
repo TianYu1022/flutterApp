@@ -1,4 +1,5 @@
-import 'package:core_http/app/api_manager.dart';
+import 'dart:io';
+
 import 'package:core_http/net/dio_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -58,20 +59,22 @@ class _AppState extends State<App> {
 
   void init() async {
     await HiCache.preInit(); //初始化SP
-    await ApiManager.instance.initClient();
     initHttp();
   }
 
   void initHttp() {
-    BaseOptions options = DioUtil.getDefBaseOptions();
-    options.baseUrl = '';
-    HttpConfig config = HttpConfig(
-        status: "status",
-        code: "errorCode",
-        msg: "errorMsg",
-        data: "data",
-        options: options);
-    DioUtil().setConfig(config);
+    DioUtil()
+        .setConfig(HttpConfig(
+            status: "errorCode",
+            message: "errorMsg",
+            data: "data",
+            version: "version",
+            options: DioUtil.getDefOptions()))
+        .setBaseOptions(BaseOptions(
+            baseUrl: "http://www.wanandroid.com",
+            contentType: ContentType.parse("application/json").toString(),
+            receiveTimeout: 1000 * 30))
+        .addLoggerInterceptor();
   }
 }
 

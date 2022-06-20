@@ -1,8 +1,10 @@
+import 'package:core_tools/json_utils.dart';
 import 'package:flutter/material.dart';
 
 /// 使用flutter日志打印
 class LogUtils {
   static const String _defTag = 'FlutterLogUtils';
+
   //是否是debug模式,true: log v 不输出.
   static bool _debugMode = true;
   static int _maxLen = 128;
@@ -16,6 +18,13 @@ class LogUtils {
     _tagValue = tag;
     _debugMode = isDebug;
     _maxLen = maxLen;
+  }
+
+  /// 打印 Json
+  static void logJson(Object object) {
+    if (_debugMode) {
+      debugPrint(JsonUtils.toJson(object));
+    }
   }
 
   ///打印debug日志

@@ -1,28 +1,45 @@
-import 'package:core_http/app/api_manager.dart';
+import 'package:core_http/net/dio_util.dart';
+import 'package:core_http/protocol/base_resp.dart';
 import 'package:rxdart/rxdart.dart';
 import 'bloc_provider.dart';
+import 'models.dart';
 
 class ApplicationBloc implements BlocBase {
-  final BehaviorSubject<List<BannerModel>> _appEvent = BehaviorSubject();
+  ///文章
+  final BehaviorSubject<List<ReposModel>> _repos =
+      BehaviorSubject<List<ReposModel>>();
 
-  Sink<List<BannerModel>> get _appEventSink => _appEvent.sink;
+  Sink<List<ReposModel>> get _reposSink => _repos.sink;
 
-  Stream<List<BannerModel>> get appEventStream => _appEvent.stream;
+  Stream<List<ReposModel>> get reposStream => _repos.stream;
 
-  Future? getBannerList() async {
-    return ApiManager.instance
-        .getBanner(ReqData(name: "田宇", sex: "男", age: 18).toJson())
-        .then((data) => _appEventSink.add(data));
+  Future getArticleListData() {
+    return getArticleListProject().then((value) => _reposSink.add(value));
+  }
+
+  Future<List<ReposModel>> getArticleListProject() async {
+    BaseResp<Map<String, dynamic>> baseResp = await DioUtil()
+        .request<Map<String, dynamic>>("/article/listproject/0/json",
+            method: Method.get);
+    List<ReposModel> list;
+    if (baseResp.status != 0) {
+      return Future.error(baseResp.message ?? "");
+    }
+    ComData comData = ComData.fromJson(baseResp.data!);
+    list = comData.datas.map((value) {
+      return ReposModel.fromJson(value);
+    }).toList();
+    return list;
   }
 
   @override
   void dispose() {
-    _appEvent.close();
+    _repos.close();
   }
 
   @override
   Future? getData({String? labelId, int? page}) {
-    return getBannerList();
+    return getArticleListData();
   }
 
   @override

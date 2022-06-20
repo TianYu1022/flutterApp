@@ -14,13 +14,13 @@ dependencies:
   path_provider: ^2.0.4
   dio_cookie_manager: 2.0.0
 
-  # 工具模块
-#  core_tools:
-#    git:
-#      url: git@github.com:TianYu1022/flutterApp.git
-#      path: package/core_tools
-  core_tools: # 工具模块
-    path: ../core_tools
+#   工具模块
+  core_tools:
+    git:
+      url: git@github.com:TianYu1022/flutterApp.git
+      path: package/core_tools
+#  core_tools: # 工具模块
+#    path: ../core_tools
 dev_dependencies:
   flutter_test:
     sdk: flutter

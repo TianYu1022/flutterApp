@@ -344,4 +344,10 @@ class DioUtil {
       }
     }
   }
+  /// 设置拦截器
+  void _setInterceptors(Interceptor interceptor) {
+    if (_dio != null) {
+        _dio?.interceptors.add(interceptor);
+    }
+  }
 }

@@ -103,6 +103,30 @@ class _DetailPageDemoState extends State<DetailPageDemo> {
               fontWeight: FontWeight.bold,
             )));
 
+    Widget bottomButton = Container(
+        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+        child: TextButton(
+            style: ButtonStyle(
+                //圆角
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0))),
+                //边框
+                side: MaterialStateProperty.all(
+                  const BorderSide(color: Colors.blue, width: 0.67),
+                ),
+                //背景
+                backgroundColor: MaterialStateProperty.all(Colors.blue)),
+            child: const Text(
+              '确定',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 14),
+            ),
+            onPressed: () {
+              showToast(msg: "确定");
+            }));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('详情Demo页面'),
@@ -113,7 +137,8 @@ class _DetailPageDemoState extends State<DetailPageDemo> {
           headSection,
           titleSection,
           buttonSection,
-          textSection
+          textSection,
+          bottomButton
         ],
       ),
     );

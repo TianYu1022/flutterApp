@@ -78,15 +78,26 @@ class DioUtil {
   /// [path] 网址路径。
   /// [reqData] 请求数据
   /// [options] 请求选项。
+  /// [requestStart] 开始请求 返回请求参数。
+  /// [requestEnd] 请求结束 返回返回值。
+  /// [error] 请求失败。
   /// <BaseResp<T> 返回 状态码消息数据。
-  Future<BaseResp<T>> request<T>(String path,
-      {String method = Method.post,
-      reqData,
-      Options? options,
-      CancelToken? cancelToken}) async {
+  Future<BaseResp<T>> request<T>(
+    String path, {
+    String method = Method.post,
+    reqData,
+    Options? options,
+    CancelToken? cancelToken,
+    Function(T)? requestStart,
+    Function(BaseResp? res)? requestEnd,
+    Function(Object d)? error,
+  }) async {
     Options requestOptions = _options ?? getDefOptions(); //可以使用传过来的 options
     if (options != null) {
       requestOptions = options;
+    }
+    if (requestStart != null) {
+      requestStart(reqData);
     }
     Response? response = await _dio?.request(path,
         data: reqData,
@@ -121,9 +132,19 @@ class DioUtil {
             msg = dataMap[_msgKey];
             data = dataMap[_dataKey];
           }
-          return BaseResp(
+          var baseResponse = BaseResp(
               status: status, version: version, message: msg, data: data);
+          if (requestEnd != null) {
+            requestEnd(baseResponse);
+          }
+          return baseResponse;
         } catch (e) {
+          if (error != null) {
+            error(e);
+          }
+          if (requestEnd != null) {
+            requestEnd(null);
+          }
           return Future.error(DioError(
             response: response,
             type: DioErrorType.response,

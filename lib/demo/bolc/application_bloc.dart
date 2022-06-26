@@ -1,5 +1,7 @@
 import 'package:core_http/net/dio_util.dart';
 import 'package:core_http/protocol/base_resp.dart';
+import 'package:core_tools/log_utils.dart';
+import 'package:module_http/base/http_manger.dart';
 import 'package:rxdart/rxdart.dart';
 import 'bloc_provider.dart';
 import 'models.dart';
@@ -18,8 +20,9 @@ class ApplicationBloc implements BlocBase {
   }
 
   Future<List<ReposModel>> getArticleListProject() async {
-    BaseResp<Map<String, dynamic>> baseResp = await DioUtil()
-        .request<Map<String, dynamic>>("/article/listproject/0/json",
+    BaseResp<Map<String, dynamic>> baseResp =
+        await HttpManger.request<Map<String, dynamic>>(
+            "/article/listproject/0/json",
             method: Method.get);
     List<ReposModel> list;
     if (baseResp.status != 0) {

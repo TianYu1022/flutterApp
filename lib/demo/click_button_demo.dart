@@ -12,35 +12,49 @@ class ClickButtonDemo extends StatefulWidget {
 }
 
 class _ClickButtonDemoState extends State<ClickButtonDemo> {
+  ApplicationBloc? mApplicationBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    mApplicationBloc =
+        BlocProvider.of<ApplicationBloc>(context) ?? ApplicationBloc();
+    mApplicationBloc?.getArticleListData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ApplicationBloc applicationBloc =
-        BlocProvider.of<ApplicationBloc>(context) ?? ApplicationBloc();
-
     return Scaffold(
       appBar: AppBar(
         title: Text("ClickButtonDemo"),
         elevation: 0.0,
       ),
       body: StreamBuilder(
-          stream: applicationBloc.reposStream,
+          stream: mApplicationBloc?.reposStream,
           builder:
               (BuildContext context, AsyncSnapshot<List<ReposModel>> snapshot) {
-            if (snapshot.data == null) {
-              // applicationBloc.getData();
-              applicationBloc.getArticleListData();
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              return ListView.builder(
-                  itemCount: snapshot.data?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(snapshot.data?[index].title ?? ""),
-                    );
-                  });
-              // return Text(data.data?[index].title ?? "");
-              // BannerModel model = snapshot.data ?? [][index];
-            }
+            return ListView.builder(
+                itemCount: snapshot.data?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(snapshot.data?[index].title ?? ""),
+                  );
+                });
+            // if (snapshot.data == null) {
+            //   // applicationBloc.getData();
+            //   applicationBloc.getArticleListData();
+            //   // return const Center(child: CircularProgressIndicator());
+            // } else {
+            //   return ListView.builder(
+            //       itemCount: snapshot.data?.length ?? 0,
+            //       itemBuilder: (context, index) {
+            //         return ListTile(
+            //           title: Text(snapshot.data?[index].title ?? ""),
+            //         );
+            //       });
+            //   // return Text(data.data?[index].title ?? "");
+            //   // BannerModel model = snapshot.data ?? [][index];
+            // }
           }),
 
       // body: Container(

@@ -1,5 +1,5 @@
-name: core_http
-description: A new Flutter project.
+name: module_http
+description: module_http
 version: 0.0.1
 homepage:
 
@@ -10,10 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^4.0.6
+  flutter_easyloading: ^3.0.3
 
-#  core_tools: # 工具模块
-#    path: ../core_tools
+  # 组件化配置
+  core_http: # 网络请求
+    path: ../../package/core_http
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

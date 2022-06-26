@@ -176,7 +176,7 @@ class _AskForLeavePageContentState extends State<AskForLeavePageContent> {
                 ),
               ),
 
-              ///GestureDetector可点击组件
+              ///GestureDetector 可点击组件
               ///
               ///请假类型
               GestureDetector(

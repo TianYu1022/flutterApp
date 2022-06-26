@@ -1,18 +1,18 @@
-import 'dart:io';
-
-import 'package:core_http/net/dio_util.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:module_http/base/http_manger.dart';
 import 'package:number1/demo/form_demo.dart';
 import 'package:number1/model/material_components.dart';
 import 'package:number1/project/db/hi_cache.dart';
 import 'demo/basic_demo.dart';
+import 'demo/bolc/application_bloc.dart';
+import 'demo/bolc/bloc_provider.dart';
 import 'demo/botton_navigation_bar_demo.dart';
 import 'demo/drawer_demo.dart';
 import 'demo/layout_demo.dart';
 import 'demo/listview_demo.dart';
 import 'demo/navigation_demo.dart';
 import 'demo/sliver_demo.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() => runApp(const App());
 
@@ -36,14 +36,17 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, //debug调试
+      builder: EasyLoading.init(),
+      debugShowCheckedModeBanner: false,
+      //debug调试
       // home: Home(),
       initialRoute: "/mdc",
       routes: {
         "/home": (context) => Home(),
         "/about": (context) => PageDemo(title: "pushNamed 跳转"),
         "/form": (context) => FromDemo(),
-        "/mdc": (context) => MaterialComponents(),
+        "/mdc": (context) =>
+            BlocProvider(bloc: ApplicationBloc(), child: MaterialComponents()),
       },
       theme: ThemeData(
         primarySwatch: Colors.yellow,
@@ -59,22 +62,19 @@ class _AppState extends State<App> {
 
   void init() async {
     await HiCache.preInit(); //初始化SP
-    initHttp();
+    HttpManger.initHttp();
+    initEasyLoading();
   }
 
-  void initHttp() {
-    DioUtil()
-        .setConfig(HttpConfig(
-            status: "errorCode",
-            message: "errorMsg",
-            data: "data",
-            version: "version",
-            options: DioUtil.getDefOptions()))
-        .setBaseOptions(BaseOptions(
-            baseUrl: "http://www.wanandroid.com",
-            contentType: ContentType.parse("application/json").toString(),
-            receiveTimeout: 1000 * 30))
-        .addLoggerInterceptor();
+  // 初始化弹窗配置
+  static initEasyLoading() {
+    EasyLoading.instance.indicatorSize = 33;
+    EasyLoading.instance.fontSize = 12;
+    EasyLoading.instance.maskType = EasyLoadingMaskType.clear;
+    EasyLoading.instance.loadingStyle = EasyLoadingStyle.custom;
+    EasyLoading.instance.indicatorColor = Colors.white;
+    EasyLoading.instance.backgroundColor = Colors.white.withOpacity(0.4);
+    EasyLoading.instance.textColor = Colors.white;
   }
 }
 

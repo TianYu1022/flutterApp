@@ -42,8 +42,8 @@ dependencies:
   shared_preferences: ^2.0.15
 
   # 组件化配置
-  core_http: # 网络请求
-    path: ./package/core_http
+  module_http: # 网络请求
+    path: ./module/module_http
   core_tools: # 工具模块
     path: ./package/core_tools
 

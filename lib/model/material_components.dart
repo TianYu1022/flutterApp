@@ -13,6 +13,7 @@ import 'package:number1/demo/slider_demo.dart';
 import 'package:number1/demo/snack_bar_demo.dart';
 import 'package:number1/demo/state/state_management_demo.dart';
 import 'package:number1/demo/stepper_demo.dart';
+import 'package:number1/demo/stream/detail_page_demo.dart';
 import 'package:number1/demo/stream/stream_demo.dart';
 import 'package:number1/demo/state/state_management_less_demo.dart';
 import 'package:number1/demo/switch_demo.dart';
@@ -37,6 +38,7 @@ import '../demo/read_more_text_demo.dart';
 import '../test/home_page.dart';
 import 'ask_for_leave_page.dart';
 
+/// Demo 入口页面
 class MaterialComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,8 @@ class MaterialComponents extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
+          ListItem(title: "详情Demo页面", page: DetailPageDemo()),
+
           ListItem(title: "AskForLeavePage", page: AskForLeavePage()),
           ListItem(title: "Home", page: Home()),
 
@@ -61,10 +65,12 @@ class MaterialComponents extends StatelessWidget {
           ListItem(title: "GeeksforGeeks", page: GeeksforGeeks()),
 
           // BlocProvider(bloc: ApplicationBloc(), child: ListItem(title: "ClickButtonDemo 可点击控件", page: const ClickButtonDemo())),
+          // ListItem(
+          //     title: "ClickButtonDemo 可点击控件",
+          //     page: BlocProvider(
+          //         bloc: ApplicationBloc(), child: const ClickButtonDemo())),
           ListItem(
-              title: "ClickButtonDemo 可点击控件",
-              page: BlocProvider(
-                  bloc: ApplicationBloc(), child: const ClickButtonDemo())),
+              title: "ClickButtonDemo 可点击控件", page: const ClickButtonDemo()),
 
           ListItem(title: "测试各种控件摆放位置", page: HomePage()),
 

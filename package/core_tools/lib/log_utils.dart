@@ -6,7 +6,7 @@ class LogUtils {
   static const String _defTag = 'FlutterLogUtils';
 
   //是否是debug模式,true: log v 不输出.
-  static bool _debugMode = true;
+  static bool _debugMode = !const bool.fromEnvironment("dart.vm.product");
   static int _maxLen = 128;
   static String _tagValue = _defTag;
 

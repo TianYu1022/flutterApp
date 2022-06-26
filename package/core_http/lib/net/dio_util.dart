@@ -88,7 +88,7 @@ class DioUtil {
     reqData,
     Options? options,
     CancelToken? cancelToken,
-    Function(T)? requestStart,
+    Function()? requestStart,
     Function(BaseResp? res)? requestEnd,
     Function(Object d)? error,
   }) async {
@@ -97,7 +97,7 @@ class DioUtil {
       requestOptions = options;
     }
     if (requestStart != null) {
-      requestStart(reqData);
+      requestStart();
     }
     Response? response = await _dio?.request(path,
         data: reqData,
@@ -166,15 +166,26 @@ class DioUtil {
   /// [path] 网址路径。
   /// [reqData] 请求数据
   /// [options] 请求选项。
+  /// [requestStart] 开始请求 返回请求参数。
+  /// [requestEnd] 请求结束 返回返回值。
+  /// [error] 请求失败。
   /// <BaseRespR<T> 返回 状态码消息数据响应。
-  Future<BaseRespR<T>> requestR<T>(String path,
-      {String method = Method.post,
-      reqData,
-      Options? options,
-      CancelToken? cancelToken}) async {
+  Future<BaseRespR<T>> requestR<T>(
+    String path, {
+    String method = Method.post,
+    reqData,
+    Options? options,
+    CancelToken? cancelToken,
+    Function()? requestStart,
+    Function(BaseRespR? res)? requestEnd,
+    Function(Object d)? error,
+  }) async {
     Options requestOptions = _options ?? getDefOptions();
     if (options != null) {
       requestOptions = options;
+    }
+    if (requestStart != null) {
+      requestStart();
     }
     Response? response = await _dio?.request(path,
         data: reqData,
@@ -211,9 +222,19 @@ class DioUtil {
             msg = dataMap[_msgKey];
             data = dataMap[_dataKey];
           }
-          return BaseRespR(response,
+          var baseResponse = BaseRespR(response,
               status: status, data: data, version: version, message: msg);
+          if (requestEnd != null) {
+            requestEnd(baseResponse);
+          }
+          return baseResponse;
         } catch (e) {
+          if (error != null) {
+            error(e);
+          }
+          if (requestEnd != null) {
+            requestEnd(null);
+          }
           return Future.error(DioError(
             response: response,
             type: DioErrorType.response,

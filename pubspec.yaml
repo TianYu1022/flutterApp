@@ -32,7 +32,6 @@ dependencies:
   intl: ^0.17.0
   scoped_model: ^1.1.0
   rxdart: ^0.27.3
-  dio: ^4.0.6
   fluttertoast: ^8.0.9
   # flutter_swiper
   flutter_nested: ^1.0.0 # 帧率优化之后用 flutter_nested

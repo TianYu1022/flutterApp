@@ -28,7 +28,7 @@ class HttpManger {
     Function(Object d)? error,
   }) async {
     return await DioUtil().request<T>(path, method: method, reqData: reqData,
-        requestStart: (reqData) {
+        requestStart: () {
       if (isShowLoading) {
         EasyLoading.show(status: '加载中...');
       }

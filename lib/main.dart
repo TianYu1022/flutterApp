@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:module_http/base/http_manger.dart';
 import 'package:number1/demo/form_demo.dart';
 import 'package:number1/model/material_components.dart';
-import 'package:number1/project/db/hi_cache.dart';
+import 'package:provider/provider.dart';
 import 'demo/basic_demo.dart';
 import 'demo/bolc/application_bloc.dart';
 import 'demo/bolc/bloc_provider.dart';
@@ -11,10 +10,19 @@ import 'demo/drawer_demo.dart';
 import 'demo/layout_demo.dart';
 import 'demo/listview_demo.dart';
 import 'demo/navigation_demo.dart';
+import 'demo/provider/demo/cart_model.dart';
 import 'demo/sliver_demo.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-void main() => runApp(const App());
+import 'global.dart';
+
+void main() => Global.init().then((e) => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartModel()),
+      ],
+      child: const App(),
+    )));
 
 //无状态小部件 StatelessWidget 不需要修改状态的weidget
 //有状态的小部件 StatefulWidget 需要修改状态的weidget
@@ -26,13 +34,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  @override
-  void initState() {
-    super.initState();
-
-    init(); //初始化
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,23 +59,6 @@ class _AppState extends State<App> {
         toggleableActiveColor: Colors.green,
       ),
     );
-  }
-
-  void init() async {
-    await HiCache.preInit(); //初始化SP
-    HttpManger.initHttp();
-    initEasyLoading();
-  }
-
-  // 初始化弹窗配置
-  static initEasyLoading() {
-    EasyLoading.instance.indicatorSize = 33;
-    EasyLoading.instance.fontSize = 12;
-    EasyLoading.instance.maskType = EasyLoadingMaskType.clear;
-    EasyLoading.instance.loadingStyle = EasyLoadingStyle.custom;
-    EasyLoading.instance.indicatorColor = Colors.white;
-    EasyLoading.instance.backgroundColor = Colors.white.withOpacity(0.4);
-    EasyLoading.instance.textColor = Colors.white;
   }
 }
 

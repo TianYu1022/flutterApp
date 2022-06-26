@@ -34,6 +34,7 @@ import '../demo/flexible/geeksfor_geeks.dart';
 import '../demo/flexible/geeksfor_geeks1.dart';
 import '../demo/flexible/geeksfor_geeks2.dart';
 import '../demo/http/http_demo.dart';
+import '../demo/provider/demo/provider_demo.dart';
 import '../demo/read_more_text_demo.dart';
 import '../test/home_page.dart';
 import 'ask_for_leave_page.dart';
@@ -49,7 +50,8 @@ class MaterialComponents extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          ListItem(title: "详情Demo页面", page: DetailPageDemo()),
+          ListItem(title: "Provider 共享数据添加商品", page: const ProviderDemo()),
+          ListItem(title: "详情Demo页面", page: const DetailPageDemo()),
 
           ListItem(title: "AskForLeavePage", page: AskForLeavePage()),
           ListItem(title: "Home", page: Home()),
